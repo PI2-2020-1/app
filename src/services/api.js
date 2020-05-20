@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://sics-api.herokuapp.com/'
+  baseURL: process.env.BASE_API_URL
 });
 
 export default api;
