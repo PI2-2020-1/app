@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  app:
+    stdin_open: true
+    container_name: sics-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+    command: npm start
