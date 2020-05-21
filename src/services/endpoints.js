@@ -1,7 +1,5 @@
-import variables from '../variables';
-
 const endpoints = {
-  GET_TEMPERATURES: `${variables.baseUrl}/api/temperatures/`,
+  GET_TEMPERATURES: '/api/temperatures/',
 };
 
 export default endpoints;
