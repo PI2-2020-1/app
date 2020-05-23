@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import sensorService from '../../services/SensorService';
 import './App.css';
 
-const App = () => {
+const Home = () => {
   const [temperatures, setTemperatures] = useState(null);
 
   useEffect(() => {
@@ -48,4 +48,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default Home;
