@@ -9,10 +9,10 @@ export default function SignUp() {
       <img src={logo} width="200" alt="Agro" />
 
       <form>
-        <input placeholder="Nome Completo" />
-        <input type="email" placeholder="Usuario" />
-        <input type="password" placeholder="Sua senha secreta" />
-
+        <input name="username" type="text" placeholder="Usuário" />
+        <input name="email" type="email" placeholder="E-mail" />       
+        <input name="password1" type="password" placeholder="Senha" />
+        <input name="password2" type="password" placeholder="Confirmar Senha" />
         <button type="submit"> Criar conta </button>
         <Link to="/">Já tenho login</Link>
       </form>

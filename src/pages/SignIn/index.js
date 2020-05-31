@@ -9,12 +9,12 @@ export default function SignIn() {
       <img src={logo} width="200" alt="Agro" />
       <form>
         <input name="username" type="text" placeholder="Seu usuário" />
+        <input name="email" type="email" placeholder="Seu e-mail" />
         <input
           name="password"
           type="password"
-          placeholder="Sua senha secreta"
+          placeholder="Senha"
         />
-
         <button type="submit"> Acessar</button>
         <Link to="/register">Criar conta</Link>
       </form>
