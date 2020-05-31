@@ -1,38 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaSpinner } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, reduxForm } from 'redux-form'
 import { required, email } from 'redux-form-validators'
+import { signInRequest } from '../../store/modules/auth/actions'
+import FormInput from '../../components/Form/FormInput';
 
 import logo from '../../assets/logo.svg';
 
-const renderField = (props) => {
-  const {
-    input,
-    label,
-    type,
-    meta: { touched, error },
-    ...other
-  } = props;
- 
-  return (
-    <div>
-      <input 
-        {...input} 
-        placeholder={label} 
-        type={type} 
-        {...other}
-      />
-      {touched && error && <span>{error}</span>}
-    </div>
-  )
-}
-
 const SignIn = (props) => {
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.auth.loading);
 
   const { handleSubmit, submitting } = props;
   const onSignIn = ({username, email, password}) => {
-    console.log('dados', username, email, password);
+    dispatch(signInRequest(username, email, password))
   }
 
   return (
@@ -42,51 +25,33 @@ const SignIn = (props) => {
         <Field
           name="username"
           type="text"
-          component={renderField}
+          component={FormInput}
           placeholder="Seu usuário"
           label="Seu usuário"
         />
         <Field 
           name="email" 
           type="email" 
-          component={renderField} 
+          component={FormInput} 
           label="Email"
           validate={[required(), email({ msg: ' Email inválido' })]}
         />
         <Field 
           name="password" 
           type="password" 
-          component={renderField} 
+          component={FormInput} 
           label="Senha" 
         />
-        {/* <div> */}
-          <button type="submit" disabled={submitting}>
-            Acessar
-          </button>
-        {/* </div> */}
+        <button type="submit" disabled={submitting}>
+          {loading ? <FaSpinner color="#FFF" size={14} /> : 'Acessar'}
+        </button>
         <Link to="/register">Criar conta</Link>
     </form>
     
-
-
-
-      {/* <form>
-        <input name="username" type="text" placeholder="Seu usuário" />
-        <input name="email" type="email" placeholder="Seu e-mail" />
-        <input
-          name="password"
-          type="password"
-          placeholder="Senha"
-        />
-        <button type="submit"> Acessar</button>
-        <Link to="/register">Criar conta</Link>
-      </form> */}
     </>
   );
 }
 
 export default reduxForm({
-  form: 'signIn', // a unique identifier for this form
-  // validate, // <--- validation function given to redux-form
-  // warn // <--- warning function given to redux-form
+  form: 'signIn', 
 })(SignIn)

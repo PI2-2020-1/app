@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import sensorService from '../../services/SensorService';
 import './App.css';
+import { store } from '../../store';
 
 const Home = () => {
   const [temperatures, setTemperatures] = useState(null);
@@ -24,8 +25,13 @@ const Home = () => {
     setTemperatures(temps);
   };
 
+
+  const {username, email} = store.getState().user ;
+
   return (
     <div className="App">
+      <h2>{username}</h2>
+      <h3>{email}</h3>
       <p>Temperatures:</p>
         <table>
           <tbody>

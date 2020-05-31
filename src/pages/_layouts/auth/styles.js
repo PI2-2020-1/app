@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { darken } from 'polished';
 import { Field } from 'redux-form'
 
@@ -10,7 +10,19 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const Content = styled.div`
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Content = styled.div.attrs(props => ({
+  type: 'submit',
+  disabled: props.loading,
+}))`
   width: 100% !important;
   max-width: 315px;
   text-align: center;
@@ -47,6 +59,15 @@ export const Content = styled.div`
       &:hover {
         background: ${darken(0.03, '#426F42')};
       }
+
+      ${props =>
+        props.loading
+          ? css`
+              svg {
+                animation: ${rotate} 4s linear infinite;
+              }
+            `
+          : undefined}
     }
     a {
       color: #fff;

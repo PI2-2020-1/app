@@ -19,6 +19,7 @@ export function* signIn({ payload }) {
     const { token, user } = response.data;
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
+    toast.success('LogIn com sucesso');
 
     yield put(signInSuccess(token, user));
 
@@ -34,7 +35,8 @@ export function* signIn({ payload }) {
 export function* signUp({ payload }) {
   try {
     const { username, email, password1, password2 } = payload;
-
+     console.log('INFOO',username, email, password1, password2);
+;
     yield call(api.post, 'auth/signup/', {
       username,
       email,
@@ -43,8 +45,12 @@ export function* signUp({ payload }) {
     });
 
     history.push('/');
+    toast.success('Usuário cadastrado com sucesso');
   } catch (err) {
-    toast.error('Falha no cadastro, verifique seus dados');
+    toast.error('Falha no cadastro, verifique seus dados. Obs: Senha pelo menos 8 caracteres com nº\'s e letras');
+    // response API
+    console.log('erroooo',err)
+    toast.error(err.data);
     yield put(signFailure());
   }
 }
