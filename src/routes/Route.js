@@ -14,7 +14,7 @@ export default function RouteWrapper({
 }) {
   // CHAVE LOGIN
   // const signed = false ; // Log Out a desenvolver
-  const signed = store.getState().auth ;
+  const { signed } = store.getState().auth ;
 
   if (!signed && isPrivate) {
     return <Redirect to="/" />;

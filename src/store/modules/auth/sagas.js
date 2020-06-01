@@ -9,11 +9,10 @@ import { signInSuccess, signFailure } from './actions';
 
 export function* signIn({ payload }) {
   try {
-    const { username, email, password } = payload;
+    const { username, password } = payload;
 
     const response = yield call(api.post, 'auth/login/', {
       username,
-      email,
       password,
     });
     const { token, user } = response.data;
@@ -47,9 +46,8 @@ export function* signUp({ payload }) {
     history.push('/');
     toast.success('Usuário cadastrado com sucesso');
   } catch (err) {
-    toast.error('Falha no cadastro, verifique seus dados. Obs: Senha pelo menos 8 caracteres com nº\'s e letras');
-    // response API
-    console.log('erroooo',err)
+    toast.error('Falha no cadastro, Preencha os campos adequadamente e escolha uma senha bem segura');
+
     toast.error(err.data);
     yield put(signFailure());
   }
@@ -66,8 +64,13 @@ export function setToken({ payload }) {
   }
 }
 
+export function signOut() {
+  history.push('/');
+}
+
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
+  takeLatest('@auth/SIGN_OUT', signOut),
 ]);

@@ -14,8 +14,9 @@ const SignIn = (props) => {
   const loading = useSelector(state => state.auth.loading);
 
   const { handleSubmit, submitting } = props;
-  const onSignIn = ({username, email, password}) => {
-    dispatch(signInRequest(username, email, password))
+  const onSignIn = ({username, password}) => {
+    console.log('LOGANDO!', username, password)
+    dispatch(signInRequest(username, password))
   }
 
   return (
@@ -29,13 +30,13 @@ const SignIn = (props) => {
           placeholder="Seu usuário"
           label="Seu usuário"
         />
-        <Field 
+        {/* <Field 
           name="email" 
           type="email" 
           component={FormInput} 
           label="Email"
           validate={[required(), email({ msg: ' Email inválido' })]}
-        />
+        /> */}
         <Field 
           name="password" 
           type="password" 
