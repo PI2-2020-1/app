@@ -3,11 +3,10 @@ import { darken } from 'polished';
 import { Field } from 'redux-form'
 
 export const Wrapper = styled.div`
-  height: 100%;
-  background: linear-gradient(-90deg, #238e68, #00ff7f);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100vh;
+  width: 100%;
+  top:0;
+  left:0;
 `;
 
 const rotate = keyframes`
