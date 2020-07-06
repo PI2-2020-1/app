@@ -21,7 +21,7 @@ Logo.propTypes = {
 Logo.defaultProps = {
   width: 18,
   height: 18,
-  color: "#fff"
+  color: '#fff'
 }
 
 export default Logo;
