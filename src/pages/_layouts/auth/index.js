@@ -1,7 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LoginPage from '../../SignIn'
+import { Wrapper } from './styles';
 
-const AuthLayout = () => <LoginPage/>;
+const AuthLayout = ({ children }) => {
+  return (
+    <Wrapper style={{ height: '100%' }}>
+      {children}
+    </Wrapper>
+  );
+}
 
-export default AuthLayout;
+AuthLayout.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+export default AuthLayout; 
