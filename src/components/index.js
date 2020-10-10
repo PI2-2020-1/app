@@ -1,11 +1,11 @@
-import Form from './Form/FormInput';
+import FormInput from './Form/FormInput';
 import Input from './Input';
 import Logo from './Logo';
 import Logout from './LogOut';
 import Button from './Button';
 
 export {
-  Form,
+  FormInput,
   Input,
   Logo,
   Logout,

@@ -9,18 +9,16 @@ const FormInput = (props) => {
     meta: { touched, error },
     ...other
   } = props;
- 
-  return (
-    <div>
-      <input 
-        {...input} 
-        placeholder={label} 
-        type={type} 
-        {...other}
-      />
-      {touched && error && <span>{error}</span>}
-    </div>
-  )
+
+  return <>
+    <input
+      {...input}
+      {...other}
+      placeholder={label}
+      type={type}
+    />
+    {touched && error && <span>{error}</span>}
+  </>
 }
 
 export default FormInput;

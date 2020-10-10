@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const api = axios.create({
-  // baseURL: process.env.REACT_APP_BASE_API_URL,
-  baseURL: 'http://localhost:8000',
-})
+const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'http://sics-api.herokuapp.com';
+const api = axios.create({ baseURL });
 
 export default api;

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Form } from 'react-bootstrap';
 import Colors from '../../styles/colors';
+import { FormInput } from '../';
 
-const InputStyled = styled.input`
+const InputStyled = styled(FormInput)`
   border-radius: 20px;
   border-width: 0;
   color: ${Colors.grey_1};
