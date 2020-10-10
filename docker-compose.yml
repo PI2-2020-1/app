@@ -3,9 +3,7 @@ services:
   app:
     stdin_open: true
     container_name: sics-app
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: ./
     volumes:
       - '.:/app'
       - '/app/node_modules'
