@@ -24,10 +24,10 @@ const SubmitButton = styled.button`
   };
 
   padding: ${props => props.padding}px;
-  padding-top: ${props => props.paddingTop}px;
-  padding-right: ${props => props.paddingRight}px;
-  padding-bottom: ${props => props.paddingBottom}px;
-  padding-left: ${props => props.paddingLeft}px;
+  padding-top: ${props => props.paddingTop || props.paddingVertical }px;
+  padding-right: ${props => props.paddingRight || props.paddingHorizontal }px;
+  padding-bottom: ${props => props.paddingBottom || props.paddingVertical }px;
+  padding-left: ${props => props.paddingLeft || props.paddingHorizontal }px;
 
   margin: ${props => props.margin}px;
   margin-top: ${props => props.marginTop}px;
@@ -35,6 +35,7 @@ const SubmitButton = styled.button`
   margin-bottom: ${props => props.marginBottom}px;
   margin-left: ${props => props.marginLeft}px;
 
+  align-self: ${props => props.position};
 `;
 
 export { SubmitButton };

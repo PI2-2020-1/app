@@ -1,6 +1,6 @@
 import React from 'react';
 import { Title, SubTitle } from './index.style';
-import { Logo } from '../../../../components';
+import { Logo } from '../index';
 
 const LogoComTexto = () => (
   <>

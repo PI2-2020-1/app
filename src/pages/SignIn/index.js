@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { required, email } from 'redux-form-validators';
 import { signInRequest } from '../../store/modules/auth/actions';
-import { Input, Button } from '../../components';
-
-import Logo from './components/LogoText/index';
+import { Input, Button, LogoText } from '../../components';
 
 import {
   ContainerBootstrap,
@@ -33,19 +31,26 @@ const SignIn = ({ handleSubmit, submitting }) => {
 
   return (
     <ContainerBootstrap fluid>
-      <RowContainer>
+      <RowContainer height="100%">
         <ContainerSide lg={5}>
-          <Logo/>
+          <LogoText/>
         </ContainerSide>
 
         <ContainerLogin lg={7}>
           <ContainerForm>
             <Title color={Colors.grey_2} size={20} center>ENTRAR</Title>
-            <Input name='username' placeHolder='USERNAME' type='text' marginTop={60} marginBottom={30}/>
-            <Input name='password' placeHolder='SENHA' type='password'/>
+            <Input name='username' placeHolder='USERNAME' type='text' marginTop={60} marginBottom={35} padding={25}/>
+            <Input name='password' placeHolder='SENHA' type='password' padding={25}/>
             <LinkForgotPassword to='/'>Esqueci minha senha</LinkForgotPassword>
 
-            <Button color='primary' disabled={submitting} padding='18' type="submit" onClick={handleSubmit(onSignIn)}>
+            <Button 
+              color='primary' 
+              disabled={submitting} 
+              paddingVertical='20' 
+              paddingHorizontal='35' 
+              type="submit" 
+              onClick={handleSubmit(onSignIn)}
+            >
               {loading ? <FaSpinner color='#FFF' size={14} /> : 'ENTRAR'}
             </Button>
             <Link to='/register'>Criar conta</Link>

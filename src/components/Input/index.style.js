@@ -9,7 +9,7 @@ const InputStyled = styled(FormInput)`
   padding: 20px;
   margin-bottom: 10px;
   font-size: 15px;
-  width: ${props => props.width}rem;
+  width: ${props => props.width};
 
   padding: ${props => props.padding}px;
   padding-top: ${props => props.paddingTop}px;
