@@ -53,7 +53,7 @@ const SignIn = ({ handleSubmit, submitting }) => {
             >
               {loading ? <FaSpinner color='#FFF' size={14} /> : 'ENTRAR'}
             </Button>
-            <Link to='/register'>Criar conta</Link>
+            <Link to='/verification'>Criar conta</Link>
           </ContainerForm>
         </ContainerLogin>
       </RowContainer>

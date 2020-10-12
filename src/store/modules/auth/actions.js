@@ -19,6 +19,13 @@ export function signUpRequest(username, email, password1, password2) {
   };
 }
 
+export function signUpVerificationRequest(cpf) {
+  return {
+    type: '@auth/SIGN_UP_VERIFICATION_REQUEST',
+    payload: { cpf },
+  };
+}
+
 export function signFailure() {
   return {
     type: '@auth/SIGN_IN_FAILURE',
