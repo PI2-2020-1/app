@@ -33,14 +33,16 @@ export function* signIn({ payload }) {
 
 export function* signUp({ payload }) {
   try {
-    const { username, email, password1, password2 } = payload;
-     console.log('INFOO',username, email, password1, password2);
+    const { username, email, password1, password2, full_name, telegram } = payload;
+     console.log('INFOO',username, email, password1, password2, full_name, telegram);
 
     yield call(api.post, 'auth/signup/', {
       username,
       email,
       password1,
       password2,
+      full_name,
+      telegram
     });
 
     history.push('/');

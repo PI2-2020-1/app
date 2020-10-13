@@ -24,8 +24,8 @@ const SignUp = (props) => {
   const loading = useSelector(state => state.auth.loading);
 
   const { handleSubmit, submitting } = props;
-  const onSignUp = ({username, email, password, passwordConfirm}) => {
-    dispatch(signUpRequest(username, email, password, passwordConfirm))
+  const onSignUp = ({username, email, password, passwordConfirm, full_name, telegram}) => {
+    dispatch(signUpRequest(username, email, password, passwordConfirm, full_name, telegram))
   }
 
   return (
@@ -38,7 +38,7 @@ const SignUp = (props) => {
         <ContainerLogin lg={7}>
           <ContainerForm>
             <Title color={Colors.grey_2} size={20}>DADOS PESSOAIS</Title>
-            <Input name='name' placeHolder='NOME COMPLETO' type='text' marginBottom={35} padding={25}/>
+            <Input name='full_name' placeHolder='NOME COMPLETO' type='text' marginBottom={35} padding={25}/>
             <Input name='telegram' placeHolder='USUÁRIO DO TELEGRAM' type='text' marginBottom={35} padding={25}/>
             <Input name='email' placeHolder='E-MAIL' type='e-mail' marginBottom={35} padding={25} validate={[required(), email({ msg: ' Email inválido' })]}/>
             <Input name='username' placeHolder='USERNAME' type='text' marginBottom={35} padding={25}/>
