@@ -72,23 +72,23 @@ export function signOut() {
 }
 
 export function* signUpVerification({ payload }) {
-  // try {
+  try {
     const { cpf } = payload;
      console.log('CPF', cpf);
 
-    // yield call(api.get, `api/signup/verification/${cpf}`);
+    yield call(api.get, `api/signup/verification/${cpf}`);
 
     history.push(
       '/register',
       { cpf }
     );
     toast.success('Usuário habilitado para cadastro.');
-  // } catch (err) {
-  //   toast.error('Falha na verificação. Verifique o CPF');
+  } catch (err) {
+    toast.error('Falha na verificação. Verifique o CPF');
 
-  //   toast.error(err.data);
-  //   yield put(signFailure());
-  // }
+    toast.error(err.data);
+    yield put(signFailure());
+  }
 }
 
 export default all([
