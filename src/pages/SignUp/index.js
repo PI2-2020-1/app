@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSpinner } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,9 +23,10 @@ const SignUp = (props) => {
   const dispatch = useDispatch();
   const loading = useSelector(state => state.auth.loading);
 
-  const { handleSubmit, submitting } = props;
+  const { handleSubmit, submitting, history } = props;
+  const cpf = history?.location?.state?.cpf;
   const onSignUp = ({username, email, password, passwordConfirm, full_name, telegram}) => {
-    dispatch(signUpRequest(username, email, password, passwordConfirm, full_name, telegram))
+    dispatch(signUpRequest(username, email, password, passwordConfirm, full_name, telegram, cpf))
   }
 
   return (
