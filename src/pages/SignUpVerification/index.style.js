@@ -31,8 +31,8 @@ const Title = styled.p`
   font-size: ${props => props.size}px;
   font-weight: ${props => props.bold ? "bold" : "light"};
   align-self: ${props => props.center ? "center" : "start"};
-  margin-top: 5rem;
-  margin-bottom: 4rem;
+  margin-top: ${props => props.marginTop}rem;
+  margin-bottom: ${props => props.marginBottom}rem;
 `;
 
 const ContainerForm = styled.form`

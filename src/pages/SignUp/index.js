@@ -33,12 +33,13 @@ const SignUp = (props) => {
     <ContainerBootstrap fluid>
       <RowContainer height="100%">
         <ContainerSide lg={5}>
-          <LogoText/>
+          <LogoText text='SEJA BEM-VINDO À NOSSA PLATAFORMA DE MONITORAMENTO DE PLANTAÇÕES!'/>
         </ContainerSide>
 
         <ContainerLogin lg={7}>
           <ContainerForm>
-            <Title color={Colors.grey_2} size={20}>DADOS PESSOAIS</Title>
+            <Title color={Colors.grey_2} size={20} marginTop={5}>DADOS PESSOAIS</Title>
+            <Title color={Colors.grey_2} size={15} marginTop={3} marginBottom={2}>NESTA ETAPA QUEREMOS SABER MAIS SOBRE VOCÊ</Title>
             <Input name='full_name' placeHolder='NOME COMPLETO' type='text' marginBottom={35} padding={25}/>
             <Input name='telegram' placeHolder='USUÁRIO DO TELEGRAM' type='text' marginBottom={35} padding={25}/>
             <Input name='email' placeHolder='E-MAIL' type='e-mail' marginBottom={35} padding={25} validate={[required(), email({ msg: ' Email inválido' })]}/>

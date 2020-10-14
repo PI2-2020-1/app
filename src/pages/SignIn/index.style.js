@@ -40,12 +40,17 @@ const ContainerForm = styled.form`
   width: 50rem;
 `;
 
-const LinkForgotPassword = styled(Link)`
-  align-self: flex-end;
-  margin-bottom: 60px;
-  margin-top: 10px;
+const GreyLink = styled(Link)`  
   color: ${Colors.grey_1}
 `; 
+
+const LinksContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  margin-top: 10px;
+`
 
 const FormStyled = styled.form``;
 
@@ -60,6 +65,7 @@ export {
   Title,
   FormStyled,
   FormGroupStyled,
-  LinkForgotPassword,
-  ContainerBootstrap
+  GreyLink,
+  ContainerBootstrap,
+  LinksContainer
 }

@@ -31,12 +31,13 @@ const SignUpVerification = (props) => {
     <ContainerBootstrap fluid>
       <RowContainer height="100%">
         <ContainerSide lg={5}>
-          <LogoText/>
+          <LogoText text='OLÁ! SEJA BEM-VINDO AO A2P2. PRIMEIRO DIGITE SEU CPF' containerSize={30} logoSize={90}/>
         </ContainerSide>
 
         <ContainerLogin lg={7}>
           <ContainerForm>
-            <Title color={Colors.grey_2} size={20}>VERIFICAR CPF</Title>
+            <Title color={Colors.grey_2} size={20} marginTop={5}>VERIFICAR CPF</Title>
+            <Title color={Colors.grey_2} size={15} marginTop={4} marginBottom={3}>PRECISAMOS DO SEU CPF PARA VERIFICARMOS O SEU CADASTRO NO SISTEMA</Title>
             <Input name='cpf' placeHolder='CPF' type='text' marginBottom={35} padding={25}/>
             <Button 
               color='primary' 
