@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 import Colors from '../../styles/colors';
-import FormInput from '../Form';
 
-const InputStyled = styled(FormInput)`
+const InputStyled = styled.input`
   border-radius: 20px;
-  border-width: 0;
   color: ${Colors.grey_1};
   padding: 20px;
   margin-bottom: 10px;
@@ -22,6 +20,15 @@ const InputStyled = styled(FormInput)`
   margin-right: ${props => props.marginRight}px;
   margin-bottom: ${props => props.marginBottom}px;
   margin-left: ${props => props.marginLeft}px;
+
+  ${props => props.bordered ? 
+    `
+      border-width: 1px; 
+      border-color: ${Colors.grey_3};
+      border-style: double;
+    ` :
+    `border-width: 0;`
+  };
 
   ::placeholder {
     color: ${Colors.grey_3}

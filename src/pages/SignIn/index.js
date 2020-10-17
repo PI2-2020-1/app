@@ -51,6 +51,7 @@ const SignIn = ({ handleSubmit, submitting }) => {
               paddingHorizontal='35' 
               type="submit" 
               onClick={handleSubmit(onSignIn)}
+              rounded
             >
               {loading ? <FaSpinner color='#FFF' size={14} /> : 'ENTRAR'}
             </Button>

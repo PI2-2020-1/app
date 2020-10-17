@@ -18,7 +18,7 @@ Button.propTypes = {
 Button.defaultProps = {
   color: Colors.primary,
   fontColor: Colors.fontPrimary,
-  rounded: true,
+  rounded: false,
   type: 'button',
   position: '',
 }

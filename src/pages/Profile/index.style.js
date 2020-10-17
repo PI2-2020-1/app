@@ -47,4 +47,16 @@ const LinkStyled = styled(Link)`
   margin-left: 10px;
 `;
 
-export { Container, ProfileSection, Text, ContainerRow, EmployeeSection, LinkStyled };
+const ContainerTitle = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export { Container, ProfileSection, Text, ContainerRow, EmployeeSection, LinkStyled, ContainerTitle, FlexContainer };

@@ -6,7 +6,7 @@ export default reducers => {
     {
       key: 'agro',
       storage,
-      whitelist: ['auth', 'user'],
+      whitelist: ['auth', 'user', 'plantation'],
     },
     reducers
   );

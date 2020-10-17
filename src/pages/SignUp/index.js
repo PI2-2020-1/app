@@ -60,6 +60,7 @@ const SignUp = (props) => {
               onClick={handleSubmit(onSignUp)} 
               position='flex-end'
               marginTop={70}
+              rounded
             >
               {loading ? <FaSpinner color='#FFF' size={14} /> : 'Continuar'}
             </Button>
