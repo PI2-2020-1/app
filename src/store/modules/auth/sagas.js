@@ -17,6 +17,8 @@ export function* signIn({ payload }) {
     });
     const { token, user } = response.data;
 
+    console.log('auth', token, user);
+
     api.defaults.headers.Authorization = `Bearer ${token}`;
     toast.success('LogIn com sucesso');
 
@@ -54,11 +56,15 @@ export function* signUp({ payload }) {
 }
 
 export function setToken({ payload }) {
+  console.log('entrou')
+  console.log('payload', payload)
+  console.log('payload', payload)
   /* Se for a 1ª vez q o user ta acessando
    a aplicação, ou tiver nada salvo */
   if (!payload) return;
 
   const { token } = payload.auth;
+  console.log('token', token)
   if (token) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
   }
