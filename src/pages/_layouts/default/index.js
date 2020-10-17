@@ -9,7 +9,7 @@ export default function DefaultLayout({ children }) {
       <MenuSidebar />
       {children}
     </Wrapper>
-  )
+  );
 }
 
 DefaultLayout.propTypes = {

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import * as BiIcons from 'react-icons/bi';
 import { signOut } from '../../store/modules/auth/actions';
+import { Button, Text } from './styles';
 
 function LogOut() {
   const disptach = useDispatch();
@@ -8,11 +10,14 @@ function LogOut() {
 
   function handleSignOut() {
     disptach(signOut());
-    console.log('saaaiu')
+    console.log('saaaiu');
   }
 
   return (
-    <button onClick={handleSignOut}> Sair </button>
+    <Button onClick={handleSignOut}>
+      <BiIcons.BiLogOutCircle size={30} />
+      <Text>Sair</Text>
+    </Button>
   );
 }
 
