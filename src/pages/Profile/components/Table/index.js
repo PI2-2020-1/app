@@ -44,7 +44,7 @@ const BasicTable = ({ users }) => {
           </StyledTableRow>
         </TableHead>
         <TableBody>
-          { users.map( row => {console.log(row); return <UserLine row={row}/>} )}
+          {users.map( row => <UserLine row={row}/> )}
         </TableBody>
       </Table>
     </TableContainer>

@@ -6,8 +6,6 @@ const ContainerForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex: 0.6;
-  width: 50rem;
 `;
 
 const FlexContainer = styled.div`

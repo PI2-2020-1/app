@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Spinner } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import EditIcon from '@material-ui/icons/Edit'
 
 import Colors from '../../styles/colors';
-import { Container, ProfileSection, Text, ContainerRow, EmployeeSection, LinkStyled, ContainerTitle, FlexContainer, ModalBody, ContainerForm } from './index.style'
+import { 
+  Container, 
+  ProfileSection, 
+  Text, 
+  ContainerRow, 
+  EmployeeSection, 
+  ContainerTitle, 
+} from './index.style'
 import Table from './components/Table';
 import AddEmployeeModal from './components/AddEmployeeModal';
 import { Button } from '../../components';
@@ -19,8 +25,6 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(getEmployees(user.username));
-    console.log('USER', user);
-    console.log('EMPLOYEES', employees);
   }, []);
 
   return (
@@ -61,7 +65,7 @@ const Profile = () => {
       { 
         loading ?
           <Spinner animation="border" variant="success" /> :
-        employees && 
+        employees.length > 0 && 
           <EmployeeSection>
             <Table users={employees}></Table>
           </EmployeeSection>
