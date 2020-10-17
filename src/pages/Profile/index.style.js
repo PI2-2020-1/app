@@ -1,8 +1,7 @@
-import styled from "styled-components";
-import Colors from '../../styles/colors';
+import styled from 'styled-components';
 import { Row } from 'react-bootstrap';
-import { Link } from "react-router-dom";
-
+import { Link } from 'react-router-dom';
+import Colors from '../../styles/colors';
 
 const Container = styled.div`
   display: flex;
@@ -10,6 +9,7 @@ const Container = styled.div`
   padding: 5rem;
   flex-direction: column;
   min-height: 100%;
+  flex: 1;
 `;
 
 const ProfileSection = styled.div`
@@ -19,21 +19,20 @@ const ProfileSection = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 4rem;
-`
+`;
 
 const Text = styled.p`
-  font-size: ${props => props.size || 14}px;
-  color: ${props => props.color || Colors.fontSecondary};
-  font-weight: ${props => props.bold ? 'bold' : 'normal'};
-  margin-bottom: ${props => props.marginBottom || 0}rem;
-  padding-left: ${props => props.paddingLeft || 0}px;
-  margin-right: ${props => props.marginRight|| 0}px;
+  font-size: ${(props) => props.size || 14}px;
+  color: ${(props) => props.color || Colors.fontSecondary};
+  font-weight: ${(props) => (props.bold ? 'bold' : 'normal')};
+  margin-bottom: ${(props) => props.marginBottom || 0}rem;
+  padding-left: ${(props) => props.paddingLeft || 0}px;
+  margin-right: ${(props) => props.marginRight || 0}px;
   line-height: 4rem;
-  text-align: ${props => props.textAlign || 'start'};
-`
+  text-align: ${(props) => props.textAlign || 'start'};
+`;
 
-const EmployeeSection = styled.div`
-`; 
+const EmployeeSection = styled.div``;
 
 const ContainerRow = styled(Row)`
   width: 100%;
@@ -41,8 +40,8 @@ const ContainerRow = styled(Row)`
 
 const LinkStyled = styled(Link)`
   color: ${Colors.grey_1};
-  text-align: ${props => props.textAlign || 'start'};
-  margin-right: ${props => props.marginRight|| 0}px;
+  text-align: ${(props) => props.textAlign || 'start'};
+  margin-right: ${(props) => props.marginRight || 0}px;
   margin-bottom: 10px;
   margin-left: 10px;
 `;
@@ -59,4 +58,13 @@ const FlexContainer = styled.div`
   flex-direction: column;
 `;
 
-export { Container, ProfileSection, Text, ContainerRow, EmployeeSection, LinkStyled, ContainerTitle, FlexContainer };
+export {
+  Container,
+  ProfileSection,
+  Text,
+  ContainerRow,
+  EmployeeSection,
+  LinkStyled,
+  ContainerTitle,
+  FlexContainer,
+};
