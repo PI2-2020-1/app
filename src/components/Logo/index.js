@@ -8,8 +8,7 @@ const Imagem = styled.img`
 `;
 
 const Logo = ({width, height, color}) => (
-  <Imagem src={logo} height={height} width={width} color={color} >
-  </Imagem>
+  <Imagem src={logo} height={height} width={width} color={color}/>
 );
 
 Logo.propTypes = {

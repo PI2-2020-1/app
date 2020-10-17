@@ -35,14 +35,17 @@ export function* signIn({ payload }) {
 
 export function* signUp({ payload }) {
   try {
-    const { username, email, password1, password2 } = payload;
-     console.log('INFOO',username, email, password1, password2);
-;
+    const { username, email, password1, password2, full_name, telegram, cpf } = payload;
+     console.log('INFOO',username, email, password1, password2, full_name, telegram, cpf);
+
     yield call(api.post, 'auth/signup/', {
       username,
       email,
       password1,
       password2,
+      full_name,
+      telegram,
+      cpf
     });
 
     history.push('/');
@@ -74,9 +77,30 @@ export function signOut() {
   history.push('/');
 }
 
+export function* signUpVerification({ payload }) {
+  try {
+    const { cpf } = payload;
+     console.log('CPF', cpf);
+
+    yield call(api.get, `api/signup/verification/${cpf}`);
+
+    history.push(
+      '/register',
+      { cpf }
+    );
+    toast.success('Usuário habilitado para cadastro.');
+  } catch (err) {
+    toast.error('Falha na verificação. Verifique o CPF');
+
+    toast.error(err.data);
+    yield put(signFailure());
+  }
+}
+
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
+  takeLatest('@auth/SIGN_UP_VERIFICATION_REQUEST', signUpVerification),
   takeLatest('@auth/SIGN_OUT', signOut),
 ]);
