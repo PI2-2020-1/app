@@ -80,8 +80,7 @@ const Profile = () => {
       {loading ? (
         <Spinner animation="border" variant="success" />
       ) : (
-        // remover essa verificação e verificar se é admin
-        employees && (
+        (user.is_superuser || employees) && (
           <EmployeeSection>
             <Table users={employees} />
           </EmployeeSection>
