@@ -25,13 +25,19 @@ const Text = styled.p`
   margin-bottom: ${props => props.marginBottom || 0}rem;
   padding-left: ${props => props.paddingLeft || 0}px;
   margin-right: ${props => props.marginRight|| 0}px;
+  margin-left: ${props => props.marginLeft|| 0}px;
   line-height: 4rem;
   text-align: ${props => props.textAlign || 'start'};
 `
+
+const HeaderModal = styled(Modal.Header)`
+  background-color: ${Colors.grey_2};
+`;
 
 export {
   ContainerForm,
   FlexContainer,
   ModalBody,
-  Text
+  Text,
+  HeaderModal
 };

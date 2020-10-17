@@ -30,7 +30,7 @@ const Profile = () => {
   return (
     <Container>
       <ContainerTitle>
-        <Text size={30}> Perfil </Text>
+        <Text size={25}> Perfil </Text>
         <Button paddingHorizontal={20} paddingTop={10} paddingBottom={10} rounded>Editar</Button>
       </ContainerTitle>
       <ProfileSection>
@@ -41,8 +41,8 @@ const Profile = () => {
             <Text paddingRight={30}>Username</Text>
           </Col>
           <Col lg={5}>
-            <Text color={Colors.grey_4}>{user.full_name || 'Não fornecido'}</Text>
-            <Text color={Colors.grey_4}>{user.cpf || 'Não fornecido'}</Text>
+            <Text color={Colors.grey_4}>{user.full_name || '-'}</Text>
+            <Text color={Colors.grey_4}>{user.cpf || '-'}</Text>
             <Text color={Colors.grey_4}>{user.username}</Text>
           </Col>
           <Col>
@@ -52,14 +52,14 @@ const Profile = () => {
           </Col>
           <Col>
             <Text color={Colors.grey_4}>{user.email}</Text>
-            <Text color={Colors.grey_4}>{user.camp || 'Não Fornecido'}</Text>
-            <Text color={Colors.grey_4}>{user.telegram || 'Não Fornecido'}</Text>
+            <Text color={Colors.grey_4}>{user.camp || '-'}</Text>
+            <Text color={Colors.grey_4}>{user.telegram || '-'}</Text>
           </Col>
         </ContainerRow>
       </ProfileSection>
 
       <ContainerTitle>
-        <Text size={30}>Funcionários</Text>
+        <Text size={25}>Funcionários</Text>
         <Button onClick={() => setModalShow(true)} paddingHorizontal={20} paddingTop={10} paddingBottom={10} rounded>Adicionar</Button>
       </ContainerTitle>
       { 

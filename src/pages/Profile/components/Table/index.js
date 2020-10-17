@@ -20,12 +20,19 @@ const BasicTable = ({ users }) => {
   }))(TableRow);
 
   const UserLine = ({ row }) => (
-    <TableRow key={row.cpf}>
+    <TableRow key={ row.cpf }>
       <TableCell align="center">
-        <Text>{row.is_active ? "Confirmado" : "Pendente"}</Text>
+        <Text>{ row.is_active ? "Completo" : "Parcial"}</Text>
       </TableCell>
-      <TableCell align="center"><Text>{row.full_name}</Text></TableCell>
-      <TableCell align="center"><Text>{row.email}</Text></TableCell>
+      <TableCell align="center">
+        <Text>{ row.cpf || '-'}</Text>
+      </TableCell>
+      <TableCell align="center">
+        <Text>{ row.full_name|| '-' }</Text>
+      </TableCell>
+      <TableCell align="center">
+        <Text>{ row.email || '-' }</Text>
+      </TableCell>
       <TableCell align="center">
         <LinkStyled to='/'><CancelIcon/></LinkStyled>
       </TableCell>
@@ -38,6 +45,7 @@ const BasicTable = ({ users }) => {
         <TableHead>
           <StyledTableRow>
             <TableCell align="center"><Text color={Colors.fontPrimary} bold>Status</Text></TableCell>
+            <TableCell align="center"><Text color={Colors.fontPrimary} bold>CPF</Text></TableCell>
             <TableCell align="center"><Text color={Colors.fontPrimary} bold>Nome</Text></TableCell>
             <TableCell align="center"><Text color={Colors.fontPrimary} bold>E-mail</Text></TableCell>
             <TableCell align="center"><Text color={Colors.fontPrimary} bold>Ações</Text></TableCell>
