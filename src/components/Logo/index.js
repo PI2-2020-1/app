@@ -4,23 +4,24 @@ import styled from 'styled-components';
 import logo from '../../assets/logo.svg';
 
 const Imagem = styled.img`
-  margin: 25px;
+  /* margin: 25px; */
 `;
 
-const Logo = ({width, height, color}) => (
-  <Imagem src={logo} height={height} width={width} color={color}/>
+const Logo = ({ width, height, color }) => (
+  // <Imagem src={logo} height={height} width={width} color={color} >
+  <Imagem src={logo} height={height} width={width} color="#ff0000" />
 );
 
 Logo.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Logo.defaultProps = {
   width: 18,
   height: 18,
-  color: '#fff'
-}
+  color: '#fff',
+};
 
 export default Logo;
