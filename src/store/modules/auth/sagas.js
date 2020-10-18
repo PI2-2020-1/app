@@ -35,8 +35,15 @@ export function* signIn({ payload }) {
 
 export function* signUp({ payload }) {
   try {
-    const { username, email, password1, password2, full_name, telegram, cpf } = payload;
-     console.log('INFOO',username, email, password1, password2, full_name, telegram, cpf);
+    const {
+      username,
+      email,
+      password1,
+      password2,
+      full_name,
+      telegram,
+      cpf,
+    } = payload;
 
     yield call(api.post, 'auth/signup/', {
       username,
@@ -45,13 +52,15 @@ export function* signUp({ payload }) {
       password2,
       full_name,
       telegram,
-      cpf
+      cpf,
     });
 
     history.push('/');
     toast.success('Usuário cadastrado com sucesso');
   } catch (err) {
-    toast.error('Falha no cadastro, Preencha os campos adequadamente e escolha uma senha bem segura');
+    toast.error(
+      'Falha no cadastro, Preencha os campos adequadamente e escolha uma senha bem segura'
+    );
 
     toast.error(err.data);
     yield put(signFailure());
@@ -59,15 +68,12 @@ export function* signUp({ payload }) {
 }
 
 export function setToken({ payload }) {
-  console.log('entrou')
-  console.log('payload', payload)
-  console.log('payload', payload)
   /* Se for a 1ª vez q o user ta acessando
    a aplicação, ou tiver nada salvo */
   if (!payload) return;
 
   const { token } = payload.auth;
-  console.log('token', token)
+
   if (token) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
   }
@@ -80,14 +86,11 @@ export function signOut() {
 export function* signUpVerification({ payload }) {
   try {
     const { cpf } = payload;
-     console.log('CPF', cpf);
+    console.log('CPF', cpf);
 
     yield call(api.get, `api/signup/verification/${cpf}`);
 
-    history.push(
-      '/register',
-      { cpf }
-    );
+    history.push('/register', { cpf });
     toast.success('Usuário habilitado para cadastro.');
   } catch (err) {
     toast.error('Falha na verificação. Verifique o CPF');

@@ -1,36 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import sensorService from '../../services/SensorService';
+import { useSelector, useDispatch } from 'react-redux';
+import { FaSpinner } from 'react-icons/fa';
+import Item from './Item';
+import { getStationDataRequest } from '../../store/modules/station/actions';
+import { Container, Header, ItemsGrid, Title } from './styles';
+import Colors from '../../styles/colors';
 
 const Home = () => {
-  const [temperatures, setTemperatures] = useState(null);
-  const { username, email } = useSelector((state) => state.user.profile);
-  const user = useSelector((state) => state.user);
-  console.log('userr', user);
+  const disptach = useDispatch();
+  const { stationData, loading } = useSelector((state) => state.station);
+
   useEffect(() => {
-    console.log('userr', user);
-    getTemperatures();
-    setTemperatures([
-      {
-        value: 100.0,
-      },
-      {
-        value: 1.0,
-      },
-    ]);
-  }, [user]);
-
-  const getTemperatures = async () => {
-    const temps = await sensorService.getTemperatures();
-    setTemperatures(temps);
-  };
-
-  // const {username, email} = store.getState().user ;
+    disptach(getStationDataRequest());
+  }, []);
 
   return (
-    <>
-      <h1>Dashboard</h1>
-    </>
+    <Container>
+      <Header>
+        <Title>Dashboard</Title>
+      </Header>
+      {loading ? (
+        <FaSpinner
+          color={Colors.primary}
+          size={35}
+          style={{ marginLeft: 50 }}
+        />
+      ) : (
+        <ItemsGrid>
+          {stationData && stationData.map((item) => <Item item={item} />)}
+        </ItemsGrid>
+      )}
+    </Container>
   );
 };
 
