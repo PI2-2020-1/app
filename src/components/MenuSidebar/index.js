@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogOut from '../LogOut';
-import Logo from '../Logo';
-import LogoText from '../LogoText';
-import Colors from '../../styles/colors';
+import greenLogo from '../../assets/greenLogo.svg';
+import A2P2 from '../../assets/A2P2.svg';
 import ButtonMenu from './ButtonMenu';
 import { SidebarData } from './SidebarData';
 import {
@@ -14,6 +13,8 @@ import {
   FarmOf,
   FarmOwner,
   ContainerMenu,
+  Logo,
+  LogoText,
 } from './styles';
 
 function MenuSidebar() {
@@ -23,7 +24,8 @@ function MenuSidebar() {
   return (
     <Container>
       <WrapperLogo>
-        <LogoText text="A2P2" logoSize={40} containerSize={30} />
+        <Logo src={greenLogo} />
+        <LogoText src={A2P2} />
       </WrapperLogo>
 
       <ContainerInfo>

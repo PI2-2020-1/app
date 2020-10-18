@@ -20,6 +20,8 @@ const ContainerInfo = styled.div`
   /* align-items: center; */
   justify-content: center;
   margin-left: 25px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 `;
 
 const Data = styled.span`
@@ -27,6 +29,7 @@ const Data = styled.span`
 `;
 
 const Description = styled.span`
+  margin-top: 3px;
   font-size: 15px;
 `;
 

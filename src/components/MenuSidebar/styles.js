@@ -17,8 +17,11 @@ const WrapperLogo = styled.div`
   align-items: center;
   align-self: center;
   justify-content: center;
-  width: 140px;
-  height: 140px;
+  padding: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  /* width: 140px;
+  height: 140px; */
   flex-direction: column;
   background: ${Colors.secondary};
   border-radius: 100%;
@@ -49,6 +52,17 @@ const ContainerMenu = styled.div`
   margin-left: 20px;
 `;
 
+const Logo = styled.img`
+  /* margin: 25px; */
+  /* margin-top: 20px; */
+`;
+
+const LogoText = styled.img`
+  margin-top: 3px;
+  /* margin: 25px; */
+  /* margin-bottom: 20px; */
+`;
+
 export {
   Container,
   WrapperLogo,
@@ -56,4 +70,6 @@ export {
   FarmOf,
   FarmOwner,
   ContainerMenu,
+  Logo,
+  LogoText,
 };
