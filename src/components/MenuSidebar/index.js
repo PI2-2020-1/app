@@ -20,8 +20,6 @@ function MenuSidebar() {
   const { username } = useSelector((state) => state.user.profile);
   const user = useSelector((state) => state.user);
 
-  const a = 'thi';
-  const b = 'Rib';
   return (
     <Container>
       <WrapperLogo>
