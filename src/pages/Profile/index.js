@@ -3,14 +3,14 @@ import { Col, Spinner } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Colors from '../../styles/colors';
-import { 
-  Container, 
-  ProfileSection, 
-  Text, 
-  ContainerRow, 
-  EmployeeSection, 
-  ContainerTitle, 
-} from './index.style'
+import {
+  Container,
+  ProfileSection,
+  Text,
+  ContainerRow,
+  EmployeeSection,
+  ContainerTitle,
+} from './index.style';
 import Table from './components/Table';
 import AddEmployeeModal from './components/AddEmployeeModal';
 import { Button } from '../../components';
@@ -18,9 +18,9 @@ import { getEmployees } from '../../store/modules/plantation/actions';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user.profile);
-  const loading = useSelector(state => state.user.loading);
-  const employees = useSelector(state => state.plantation.employees);
+  const user = useSelector((state) => state.user.profile);
+  const loading = useSelector((state) => state.user.loading);
+  const employees = useSelector((state) => state.plantation.employees);
   const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
@@ -31,7 +31,14 @@ const Profile = () => {
     <Container>
       <ContainerTitle>
         <Text size={25}> Perfil </Text>
-        <Button paddingHorizontal={20} paddingTop={10} paddingBottom={10} rounded>Editar</Button>
+        <Button
+          paddingHorizontal={20}
+          paddingTop={10}
+          paddingBottom={10}
+          rounded
+        >
+          Editar
+        </Button>
       </ContainerTitle>
       <ProfileSection>
         <ContainerRow>
@@ -60,22 +67,29 @@ const Profile = () => {
 
       <ContainerTitle>
         <Text size={25}>Funcionários</Text>
-        <Button onClick={() => setModalShow(true)} paddingHorizontal={20} paddingTop={10} paddingBottom={10} rounded>Adicionar</Button>
+        <Button
+          onClick={() => setModalShow(true)}
+          paddingHorizontal={20}
+          paddingTop={10}
+          paddingBottom={10}
+          rounded
+        >
+          Adicionar
+        </Button>
       </ContainerTitle>
-      { 
-        loading ?
-          <Spinner animation="border" variant="success" /> :
-        employees.length > 0 && 
+      {loading ? (
+        <Spinner animation="border" variant="success" />
+      ) : (
+        (user.is_superuser || employees) && (
           <EmployeeSection>
-            <Table users={employees}></Table>
+            <Table users={employees} />
           </EmployeeSection>
-      }
+        )
+      )}
 
-      <AddEmployeeModal show={modalShow} onHide={() => setModalShow(false)}/>
+      <AddEmployeeModal show={modalShow} onHide={() => setModalShow(false)} />
     </Container>
-
   );
-
-}
+};
 
 export default Profile;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import CancelIcon from '@material-ui/icons/Cancel';
 import Table from '@material-ui/core/Table';
@@ -8,11 +8,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import PropTypes from 'prop-types';
 import { Text, LinkStyled } from './index.style';
 import Colors from '../../../../styles/colors';
 
 const BasicTable = ({ users }) => {
-
   const StyledTableRow = withStyles(() => ({
     head: {
       backgroundColor: Colors.primary,
@@ -20,43 +20,90 @@ const BasicTable = ({ users }) => {
   }))(TableRow);
 
   const UserLine = ({ row }) => (
-    <TableRow key={ row.cpf }>
+    <TableRow key={row.cpf}>
       <TableCell align="center">
-        <Text>{ row.is_active ? "Completo" : "Parcial"}</Text>
+        <Text>{row.is_active ? 'Completo' : 'Parcial'}</Text>
       </TableCell>
       <TableCell align="center">
-        <Text>{ row.cpf || '-'}</Text>
+        <Text>{row.cpf || '-'}</Text>
       </TableCell>
       <TableCell align="center">
-        <Text>{ row.full_name|| '-' }</Text>
+        <Text>{row.full_name || '-'}</Text>
       </TableCell>
       <TableCell align="center">
-        <Text>{ row.email || '-' }</Text>
+        <Text>{row.email || '-'}</Text>
       </TableCell>
       <TableCell align="center">
-        <LinkStyled to='/'><CancelIcon/></LinkStyled>
+        <LinkStyled to="/">
+          <CancelIcon />
+        </LinkStyled>
       </TableCell>
     </TableRow>
   );
+
+  UserLine.propTypes = {
+    row: PropTypes.shape({
+      cpf: PropTypes.string,
+      is_active: PropTypes.bool,
+      full_name: PropTypes.string,
+      email: PropTypes.string,
+    }).isRequired,
+  };
 
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
         <TableHead>
           <StyledTableRow>
-            <TableCell align="center"><Text color={Colors.fontPrimary} bold>Status</Text></TableCell>
-            <TableCell align="center"><Text color={Colors.fontPrimary} bold>CPF</Text></TableCell>
-            <TableCell align="center"><Text color={Colors.fontPrimary} bold>Nome</Text></TableCell>
-            <TableCell align="center"><Text color={Colors.fontPrimary} bold>E-mail</Text></TableCell>
-            <TableCell align="center"><Text color={Colors.fontPrimary} bold>Ações</Text></TableCell>
+            <TableCell align="center">
+              <Text color={Colors.fontPrimary} bold>
+                Status
+              </Text>
+            </TableCell>
+            <TableCell align="center">
+              <Text color={Colors.fontPrimary} bold>
+                CPF
+              </Text>
+            </TableCell>
+            <TableCell align="center">
+              <Text color={Colors.fontPrimary} bold>
+                Nome
+              </Text>
+            </TableCell>
+            <TableCell align="center">
+              <Text color={Colors.fontPrimary} bold>
+                E-mail
+              </Text>
+            </TableCell>
+            <TableCell align="center">
+              <Text color={Colors.fontPrimary} bold>
+                Ações
+              </Text>
+            </TableCell>
           </StyledTableRow>
         </TableHead>
-        <TableBody>
-          {users.map( row => <UserLine row={row}/> )}
-        </TableBody>
+
+        {users.length > 0 && (
+          <TableBody>
+            {users.map((row) => (
+              <UserLine row={row} />
+            ))}
+          </TableBody>
+        )}
       </Table>
     </TableContainer>
   );
-}
+};
+
+BasicTable.propTypes = {
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      cpf: PropTypes.string,
+      is_active: PropTypes.bool,
+      full_name: PropTypes.string,
+      email: PropTypes.string,
+    })
+  ).isRequired,
+};
 
 export default BasicTable;

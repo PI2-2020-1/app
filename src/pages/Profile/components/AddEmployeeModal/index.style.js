@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import Colors from '../../../../styles/colors';
+import styled from 'styled-components';
 import { Modal } from 'react-bootstrap';
+import Colors from '../../../../styles/colors';
 
 const ContainerForm = styled.form`
   display: flex;
@@ -19,25 +19,17 @@ const ModalBody = styled(Modal.Body)`
 `;
 
 const Text = styled.p`
-  font-size: ${props => props.size || 14}px;
-  color: ${props => props.color || Colors.fontSecondary};
-  font-weight: ${props => props.bold ? 'bold' : 'normal'};
-  margin-bottom: ${props => props.marginBottom || 0}rem;
-  padding-left: ${props => props.paddingLeft || 0}px;
-  margin-right: ${props => props.marginRight|| 0}px;
-  margin-left: ${props => props.marginLeft|| 0}px;
+  font-size: ${(props) => props.size || 14}px;
+  color: ${(props) => props.color || Colors.fontSecondary};
+  font-weight: ${(props) => (props.bold ? 'bold' : 'normal')};
+  margin-bottom: ${(props) => props.marginBottom || 0}rem;
+  padding-left: ${(props) => props.paddingLeft || 0}px;
+  margin-right: ${(props) => props.marginRight || 0}px;
+  margin-left: ${(props) => props.marginLeft || 0}px;
   line-height: 4rem;
-  text-align: ${props => props.textAlign || 'start'};
-`
-
-const HeaderModal = styled(Modal.Header)`
-  background-color: ${Colors.grey_2};
+  text-align: ${(props) => props.textAlign || 'start'};
 `;
 
-export {
-  ContainerForm,
-  FlexContainer,
-  ModalBody,
-  Text,
-  HeaderModal
-};
+const HeaderModal = styled(Modal.Header)``;
+
+export { ContainerForm, FlexContainer, ModalBody, Text, HeaderModal };

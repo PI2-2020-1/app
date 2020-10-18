@@ -8,9 +8,8 @@ const Container = styled.div`
   background-color: ${Colors.secondary};
   padding: 5rem;
   flex-direction: column;
-  min-height: 100%;
-  display: flex;
   flex: 1;
+  overflow: auto;
 `;
 
 const ProfileSection = styled.div`
