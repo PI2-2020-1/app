@@ -11,7 +11,7 @@ const Button = styled.button`
   /* margin-bottom: 55px; */
   height: 80px;
   &:hover {
-    background-color: ${Colors.fontPrimary};
+    background-color: ${Colors.secondary};
     color: ${Colors.primary};
     border-bottom-left-radius: 30px;
     border-top-left-radius: 30px;
