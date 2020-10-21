@@ -10,7 +10,10 @@ export function* getStationData() {
     const response = yield call(stationA2P2.get, '/station');
     yield put(getStationDataSuccess(response.data));
   } catch (err) {
-    toast.error('Oops, Erro. Verifique o micro-serviço da estação A2P2 ');
+    toast.error(
+      'Oops, Erro. Verifique o micro-serviço da estação A2P2 (Mock) '
+    );
+    console.log('????', err);
     // response API
     toast.error(err);
     yield put(getStationDataFailure());
