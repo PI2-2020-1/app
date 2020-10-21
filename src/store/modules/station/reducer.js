@@ -1,8 +1,10 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
-  stationData: [],
+  lastData: [],
+  allStationData: [],
   loading: false,
+  temperatures: [],
 };
 
 export default function station(state = INITIAL_STATE, action) {
@@ -21,7 +23,15 @@ export default function station(state = INITIAL_STATE, action) {
         lastSoil = Object.entries(lastSoil).map((e) => ({ [e[0]]: e[1] }));
         // Join in one array
         const envAndSoil = [...lastEnv, ...lastSoil];
-        draft.stationData = envAndSoil;
+        draft.lastData = envAndSoil;
+        draft.allStationData = stationData;
+        // GRAPHIC
+        console.log('station', stationData);
+        console.log('log', typeof stationData);
+        const temperatures = stationData.map((item) => {
+          return item.environment.temperature;
+        });
+        draft.temperatures = temperatures;
         draft.loading = false;
         break;
       }
