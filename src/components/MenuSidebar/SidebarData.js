@@ -14,7 +14,7 @@ export const SidebarData = [
   {
     id: 2,
     title: 'Relatórios',
-    path: '/home',
+    path: '/reports',
     icon: <FaIcons.FaRegFileAlt size={35} />,
     cName: 'nav-text',
   },
