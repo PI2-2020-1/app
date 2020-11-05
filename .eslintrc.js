@@ -35,13 +35,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-param-reassign': 'off',
     "react/prop-types": [2, { ignore: ['children'] }],
-    "jsx-a11y/label-has-for": [ 2, {
-      "components": [ "Label" ],
-      "required": {
-          "every": [ "nesting", "id" ]
-      },
-      "allowChildren": false
-    }],
+    "jsx-a11y/label-has-for": 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
   }

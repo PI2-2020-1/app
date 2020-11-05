@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as BiIcons from 'react-icons/bi';
 import { signOut } from '../../store/modules/auth/actions';
 import { Button, Text } from './styles';
