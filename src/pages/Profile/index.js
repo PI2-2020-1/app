@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Spinner } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-
 import Colors from '../../styles/colors';
 import {
   Container,
@@ -13,8 +12,9 @@ import {
 } from './index.style';
 import Table from './components/Table';
 import AddEmployeeModal from './components/AddEmployeeModal';
-import { Button } from '../../components';
+import { Button, Input } from '../../components';
 import { getEmployees } from '../../store/modules/plantation/actions';
+import Parameters from './Parameters';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -65,6 +65,8 @@ const Profile = () => {
         </ContainerRow>
       </ProfileSection>
 
+      <Parameters />
+
       <ContainerTitle>
         <Text size={25}>Funcionários</Text>
         <Button
@@ -80,12 +82,12 @@ const Profile = () => {
       {loading ? (
         <Spinner animation="border" variant="success" />
       ) : (
-        (user.is_superuser || employees) && (
-          <EmployeeSection>
-            <Table users={employees} />
-          </EmployeeSection>
-        )
-      )}
+          (user.is_superuser || employees) && (
+            <EmployeeSection>
+              <Table users={employees} />
+            </EmployeeSection>
+          )
+        )}
 
       <AddEmployeeModal show={modalShow} onHide={() => setModalShow(false)} />
     </Container>

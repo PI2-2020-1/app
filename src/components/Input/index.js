@@ -3,7 +3,7 @@ import { Field } from 'redux-form';
 import { InputStyled } from './index.style';
 import PropTypes from 'prop-types';
 
-const Input = ({name, type, placeHolder, ...params}) => (
+const Input = ({ name, type, placeHolder, ...params }) => (
   <Field
     name={name}
     type={type}
