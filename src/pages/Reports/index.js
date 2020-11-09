@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { Button, CommonInput } from '../../components';
+import { CommonInput } from '../../components';
 import { getReportData } from '../../services/ReportService';
+
 import {
   ContainerBootstrap,
   Title,
@@ -9,6 +10,7 @@ import {
   MultipleSelect,
   Label,
   FormGroupCheckbox,
+  Button,
 } from './index.style';
 
 const Reports = () => {
@@ -32,25 +34,48 @@ const Reports = () => {
     soilHumidity: 4,
     humidity: 5,
     wind: 0,
+    rain: 6,
+  };
+
+  const parametersName = {
+    0: 'Velocidade do Vento',
+    1: 'Temperatura do Solo',
+    2: 'Temperatura do Ambiente',
+    3: 'PH',
+    4: 'Umidade do Solo',
+    5: 'Umidade do Ar',
+    6: 'Índice Pluviomátrico',
+  };
+
+  const buildCsv = (response) => {
+    const csvTemp = [['Estação', 'Parâmetro', 'Valor', 'Data da Coleta']];
+
+    response.forEach((parameter) => {
+      parameter.forEach((data) => {
+        csvTemp.push([
+          data.station.toString(),
+          parametersName[data.parameter],
+          data.value.toString(),
+          data.time,
+        ]);
+      });
+    });
+    setReportData(csvTemp);
   };
 
   const onSubmit = async () => {
     const parametersList = [];
+
     Object.entries(parameters).forEach(
       ([parameter, show]) =>
         show && parametersList.push(parametersId[parameter])
     );
+
     const response = await getReportData(startDate, endDate, parametersList, [
-      1,
+      station,
     ]);
-    setReportData(response);
-
-    console.log(response);
+    buildCsv(response);
   };
-
-  // useEffect(() => {
-  //   console.log(parameters);
-  // });
 
   return (
     <ContainerBootstrap fluid>
@@ -72,7 +97,6 @@ const Reports = () => {
             onChange={(event) => setStartDate(event.target.value)}
           />
         </Form.Group>
-
         <Form.Group controlId="endDateNotifications">
           <Label id="end-date-label" for="end_date">
             DATA FINAL
@@ -87,7 +111,6 @@ const Reports = () => {
             onChange={(event) => setEndDate(event.target.value)}
           />
         </Form.Group>
-
         <Label id="parameters-label">PARÂMETROS</Label>
         <Form.Text className="text-muted">
           Defina quais parâmetros serão impressos no relatório
@@ -185,7 +208,6 @@ const Reports = () => {
             }
           />
         </FormGroupCheckbox>
-
         <Form.Group controlId="sensorNotifications">
           <Label id="sendor-label" for="sensor">
             ESTAÇÃO
@@ -197,7 +219,7 @@ const Reports = () => {
             as="select"
             type="select"
             padding={15}
-            onChange={(event) => setStation(event.target.value)}
+            onChange={(event) => setStation(+event.target.value)}
             width="100%"
             marginTop={10}
           >
@@ -211,7 +233,6 @@ const Reports = () => {
             <option value="5">Estação 5</option>
           </CommonInput>
         </Form.Group>
-
         <Button
           color="primary"
           paddingVertical="20"
@@ -219,6 +240,8 @@ const Reports = () => {
           position="flex-end"
           marginTop={70}
           onClick={onSubmit}
+          data={reportData}
+          filename="RelatorioA2P2.csv"
         >
           Gerar Relatório
         </Button>

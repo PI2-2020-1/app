@@ -12,7 +12,7 @@ import {
 } from './index.style';
 import Table from './components/Table';
 import AddEmployeeModal from './components/AddEmployeeModal';
-import { Button, Input } from '../../components';
+import { Button } from '../../components';
 import { getEmployees } from '../../store/modules/plantation/actions';
 import Parameters from './Parameters';
 
@@ -82,12 +82,12 @@ const Profile = () => {
       {loading ? (
         <Spinner animation="border" variant="success" />
       ) : (
-          (user.is_superuser || employees) && (
-            <EmployeeSection>
-              <Table users={employees} />
-            </EmployeeSection>
-          )
-        )}
+        (user.is_superuser || employees) && (
+          <EmployeeSection>
+            <Table users={employees} />
+          </EmployeeSection>
+        )
+      )}
 
       <AddEmployeeModal show={modalShow} onHide={() => setModalShow(false)} />
     </Container>
