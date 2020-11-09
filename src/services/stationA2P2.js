@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const baseURL = 'https://my-json-server.typicode.com/PI2-2020-1/esp';
-// const baseURL = 'http://localhost:3002';
+const baseURL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3002'
+    : 'https://my-json-server.typicode.com/PI2-2020-1/esp';
+
 const stationA2P2 = axios.create({ baseURL });
 
 export default stationA2P2;

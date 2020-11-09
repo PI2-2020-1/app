@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Button, CommonInput } from '../../components';
-
+import { getReportData } from '../../services/ReportService';
 import {
   ContainerBootstrap,
   Title,
@@ -14,7 +14,8 @@ import {
 const Reports = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [station, setStation] = useState('all');
+  const [station, setStation] = useState('0');
+  const [reportData, setReportData] = useState([]);
   const [parameters, setParameters] = useState({
     soilTemperature: false,
     temperature: false,
@@ -23,6 +24,33 @@ const Reports = () => {
     humidity: false,
     wind: false,
   });
+
+  const parametersId = {
+    soilTemperature: 1,
+    temperature: 2,
+    acidity: 3,
+    soilHumidity: 4,
+    humidity: 5,
+    wind: 0,
+  };
+
+  const onSubmit = async () => {
+    const parametersList = [];
+    Object.entries(parameters).forEach(
+      ([parameter, show]) =>
+        show && parametersList.push(parametersId[parameter])
+    );
+    const response = await getReportData(startDate, endDate, parametersList, [
+      1,
+    ]);
+    setReportData(response);
+
+    console.log(response);
+  };
+
+  // useEffect(() => {
+  //   console.log(parameters);
+  // });
 
   return (
     <ContainerBootstrap fluid>
@@ -143,6 +171,19 @@ const Reports = () => {
               })
             }
           />
+          <MultipleSelect
+            padding={20}
+            label="ÍNDICE PLUVIOMÉTRICO"
+            id="rain"
+            type="checkbox"
+            value={parameters.rain}
+            onChange={() =>
+              setParameters({
+                ...parameters,
+                rain: !parameters.rain,
+              })
+            }
+          />
         </FormGroupCheckbox>
 
         <Form.Group controlId="sensorNotifications">
@@ -160,14 +201,14 @@ const Reports = () => {
             width="100%"
             marginTop={10}
           >
-            <option value="all" defaultChecked>
+            <option value="0" defaultChecked>
               Todas
             </option>
-            <option value="estacao1">Estação 1</option>
-            <option value="estacao2">Estação 2</option>
-            <option value="estacao3">Estação 3</option>
-            <option value="estacao4">Estação 4</option>
-            <option value="estacao5">Estação 5</option>
+            <option value="1">Estação 1</option>
+            <option value="2">Estação 2</option>
+            <option value="3">Estação 3</option>
+            <option value="4">Estação 4</option>
+            <option value="5">Estação 5</option>
           </CommonInput>
         </Form.Group>
 
@@ -177,6 +218,7 @@ const Reports = () => {
           paddingHorizontal="35"
           position="flex-end"
           marginTop={70}
+          onClick={onSubmit}
         >
           Gerar Relatório
         </Button>
