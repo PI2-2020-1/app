@@ -2,13 +2,12 @@ import produce from 'immer';
 
 const INITIAL_STATE = {
   loading: false,
-  employees: []
+  employees: [],
 };
 
-export default function plantation(state = INITIAL_STATE, action){
-  return produce(state, draft => {
+export default function plantation(state = INITIAL_STATE, action) {
+  return produce(state, (draft) => {
     switch (action.type) {
-
       case '@plantation/GET_EMPLOYEES': {
         draft.loading = true;
         break;
@@ -20,6 +19,7 @@ export default function plantation(state = INITIAL_STATE, action){
       }
       case '@plantation/GET_EMPLOYEES_ERROR': {
         draft.loading = false;
+        draft.employees = [];
         break;
       }
 
@@ -34,7 +34,6 @@ export default function plantation(state = INITIAL_STATE, action){
 
       default:
         return state;
-
     }
   });
 }
