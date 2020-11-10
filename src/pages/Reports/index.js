@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { CommonInput } from '../../components';
+import { CSVLink } from 'react-csv';
+import { toast } from 'react-toastify';
+import { format } from 'date-fns';
+import { CommonInput, Button } from '../../components';
 import { getReportData } from '../../services/ReportService';
 
 import {
@@ -10,7 +13,6 @@ import {
   MultipleSelect,
   Label,
   FormGroupCheckbox,
-  Button,
 } from './index.style';
 
 const Reports = () => {
@@ -26,6 +28,8 @@ const Reports = () => {
     humidity: false,
     wind: false,
   });
+
+  const csvLinkRef = useRef();
 
   const parametersId = {
     soilTemperature: 1,
@@ -56,7 +60,7 @@ const Reports = () => {
           data.station.toString(),
           parametersName[data.parameter],
           data.value.toString(),
-          data.time,
+          format(new Date(data.time), `MM/dd/yyyy' às 'HH:mm:ss`),
         ]);
       });
     });
@@ -71,10 +75,15 @@ const Reports = () => {
         show && parametersList.push(parametersId[parameter])
     );
 
-    const response = await getReportData(startDate, endDate, parametersList, [
-      station,
-    ]);
-    buildCsv(response);
+    try {
+      const response = await getReportData(startDate, endDate, parametersList, [
+        station,
+      ]);
+      buildCsv(response);
+      csvLinkRef.current.link.click();
+    } catch {
+      toast.error('Erro ao exportar relatório');
+    }
   };
 
   return (
@@ -222,6 +231,7 @@ const Reports = () => {
             onChange={(event) => setStation(+event.target.value)}
             width="100%"
             marginTop={10}
+            name="station"
           >
             <option value="0" defaultChecked>
               Todas
@@ -240,11 +250,16 @@ const Reports = () => {
           position="flex-end"
           marginTop={70}
           onClick={onSubmit}
+        >
+          Exportar
+        </Button>
+        <CSVLink
           data={reportData}
           filename="RelatorioA2P2.csv"
-        >
-          Gerar Relatório
-        </Button>
+          separator=";"
+          enclosingCharacter={`"`}
+          ref={csvLinkRef}
+        />
       </Content>
     </ContainerBootstrap>
   );
