@@ -24,8 +24,9 @@ const Profile = () => {
   const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
+    // if (user.is_superuser) dispatch(getEmployees(user.username));
     dispatch(getEmployees(user.username));
-  }, []);
+  }, [user.username]);
 
   return (
     <Container>
@@ -67,25 +68,27 @@ const Profile = () => {
 
       <Parameters />
 
-      <ContainerTitle>
-        <Text size={25}>Funcionários</Text>
-        <Button
-          onClick={() => setModalShow(true)}
-          paddingHorizontal={20}
-          paddingTop={10}
-          paddingBottom={10}
-          rounded
-        >
-          Adicionar
-        </Button>
-      </ContainerTitle>
       {loading ? (
         <Spinner animation="border" variant="success" />
       ) : (
-        (user.is_superuser || employees) && (
-          <EmployeeSection>
-            <Table users={employees} />
-          </EmployeeSection>
+        (user.is_superuser || employees.length > 0) && (
+          <>
+            <ContainerTitle>
+              <Text size={25}>Funcionários</Text>
+              <Button
+                onClick={() => setModalShow(true)}
+                paddingHorizontal={20}
+                paddingTop={10}
+                paddingBottom={10}
+                rounded
+              >
+                Adicionar
+              </Button>
+            </ContainerTitle>
+            <EmployeeSection>
+              <Table users={employees} />
+            </EmployeeSection>
+          </>
         )
       )}
 

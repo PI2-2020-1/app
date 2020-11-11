@@ -21,7 +21,7 @@ const Reports = () => {
   const [station, setStation] = useState('0');
   const [reportData, setReportData] = useState([]);
   const [parameters, setParameters] = useState({
-    soilTemperature: false,
+    pressure: false,
     temperature: false,
     acidity: false,
     soilHumidity: false,
@@ -32,7 +32,7 @@ const Reports = () => {
   const csvLinkRef = useRef();
 
   const parametersId = {
-    soilTemperature: 1,
+    pressure: 1,
     temperature: 2,
     acidity: 3,
     soilHumidity: 4,
@@ -43,7 +43,7 @@ const Reports = () => {
 
   const parametersName = {
     0: 'Velocidade do Vento',
-    1: 'Temperatura do Solo',
+    1: 'Pressão',
     2: 'Temperatura do Ambiente',
     3: 'PH',
     4: 'Umidade do Solo',
@@ -127,14 +127,14 @@ const Reports = () => {
         <FormGroupCheckbox controlId="parametersNotifications">
           <MultipleSelect
             padding={20}
-            label="TEMPERATURA DO SOLO"
+            label="PRESSÃO"
             id="soil-temperature"
             type="checkbox"
-            value={parameters.soilTemperature}
+            value={parameters.pressure}
             onChange={() =>
               setParameters({
                 ...parameters,
-                soilTemperature: !parameters.soilTemperature,
+                pressure: !parameters.pressure,
               })
             }
           />
