@@ -27,8 +27,12 @@ export default function plantation(state = INITIAL_STATE, action) {
         draft.loading = true;
         break;
       }
-      case '@plantation/ADD_EMPLOYEE_FINISH': {
+      case '@plantation/REQUEST_FINISH': {
         draft.loading = false;
+        break;
+      }
+      case '@plantation/DELETE_EMPLOYEE': {
+        draft.loading = true;
         break;
       }
 

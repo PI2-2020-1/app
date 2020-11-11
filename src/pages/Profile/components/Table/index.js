@@ -9,15 +9,24 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { Text, LinkStyled } from './index.style';
 import Colors from '../../../../styles/colors';
+import { deleteEmployee } from '../../../../store/modules/plantation/actions';
 
 const BasicTable = ({ users }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.profile);
+
   const StyledTableRow = withStyles(() => ({
     head: {
       backgroundColor: Colors.primary,
     },
   }))(TableRow);
+
+  const deleteUserClick = (cpf) => {
+    dispatch(deleteEmployee(cpf, user.username));
+  };
 
   const UserLine = ({ row }) => (
     <TableRow key={row.cpf}>
@@ -34,8 +43,8 @@ const BasicTable = ({ users }) => {
         <Text>{row.email || '-'}</Text>
       </TableCell>
       <TableCell align="center">
-        <LinkStyled to="/">
-          <CancelIcon />
+        <LinkStyled>
+          <CancelIcon onClick={() => deleteUserClick(row.cpf)} />
         </LinkStyled>
       </TableCell>
     </TableRow>

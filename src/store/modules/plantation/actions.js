@@ -1,32 +1,39 @@
-export function getEmployees(username){
+export function getEmployees(username) {
   return {
     type: '@plantation/GET_EMPLOYEES',
     payload: { username },
   };
 }
 
-export function getEmployeesSuccess(list){
+export function deleteEmployee(cpf, username) {
+  return {
+    type: '@plantation/DELETE_EMPLOYEE',
+    payload: { cpf, username },
+  };
+}
+
+export function getEmployeesSuccess(list) {
   return {
     type: '@plantation/GET_EMPLOYEES_SUCCESS',
     payload: { list },
   };
 }
 
-export function getEmployeesError(){
+export function getEmployeesError() {
   return {
-    type: '@plantation/GET_EMPLOYEES_ERROR'
+    type: '@plantation/GET_EMPLOYEES_ERROR',
   };
 }
 
-export function addEmployeeRequest(cpf, username){
+export function addEmployeeRequest(cpf, username) {
   return {
     type: '@plantation/ADD_EMPLOYEE_REQUEST',
-    payload: { cpf, username }
-  }
+    payload: { cpf, username },
+  };
 }
 
-export function addEmployeeFinish(){
+export function requestFinish() {
   return {
-    type: '@plantation/ADD_EMPLOYEE_FINISH'
-  }
+    type: '@plantation/REQUEST_FINISH',
+  };
 }
