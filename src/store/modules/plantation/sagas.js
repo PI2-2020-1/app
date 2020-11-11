@@ -4,6 +4,7 @@ import {
   getEmployeesError,
   getEmployeesSuccess,
   requestFinish,
+  getEmployees as updateEmployees,
 } from './actions';
 import api from '../../../services/api';
 
@@ -29,6 +30,7 @@ export function* addEmployee({ payload }) {
     yield put(requestFinish());
 
     toast.success('Usuário cadastrado com sucesso');
+    yield put(updateEmployees(username));
   } catch (err) {
     yield* put(requestFinish());
     toast.error('Ocorreu um erro ao adicionar funcionário');
@@ -39,10 +41,12 @@ export function* addEmployee({ payload }) {
 export function* deleteEmployee({ payload }) {
   try {
     const { cpf, username } = payload;
+
     yield call(api.delete, `api/employees/${username}`, { data: { cpf } });
 
     yield put(requestFinish());
     toast.success('Usuário removido com sucesso');
+    yield put(updateEmployees(username));
   } catch (err) {
     toast.error('Ocorreu um erro ao remover funcionário');
     yield put(requestFinish());
