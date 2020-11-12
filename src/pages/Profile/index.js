@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Col, Spinner } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import Colors from '../../styles/colors';
+import history from '../../services/history';
 import {
   Container,
   ProfileSection,
@@ -37,6 +38,9 @@ const Profile = () => {
           paddingTop={10}
           paddingBottom={10}
           rounded
+          onClick={() => {
+            history.push('user/edit');
+          }}
         >
           Editar
         </Button>
