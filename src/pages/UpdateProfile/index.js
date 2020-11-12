@@ -33,10 +33,10 @@ const EditProfile = ({ handleSubmit, submitting }) => {
   const onSubmit = (props) => {
     console.log(props);
     // eslint-disable-next-line react/prop-types
-    const { username, cpf, name, telegram, email, camp } = props;
+    const { username, name, telegram, email } = props;
 
     console.log('ATUALIZANDO USUÁRIO!');
-    dispatch(updateUser({ username, cpf, name, telegram, email, camp }));
+    dispatch(updateUser({ username, name, telegram, email }));
   };
 
   return (
@@ -48,7 +48,7 @@ const EditProfile = ({ handleSubmit, submitting }) => {
         <Input
           name="username"
           type="text"
-          marginBottom={35}
+          marginBottom={40}
           padding={20}
           disabled
           placeHolder="NOME DE USUÁRIO"
@@ -56,7 +56,7 @@ const EditProfile = ({ handleSubmit, submitting }) => {
         <Input
           name="cpf"
           type="text"
-          marginBottomInfo={35}
+          marginBottomInfo={40}
           padding={20}
           disabled
           placeHolder="CPF"
@@ -66,7 +66,7 @@ const EditProfile = ({ handleSubmit, submitting }) => {
           name="name"
           placeHolder="NOME COMPLETO"
           type="text"
-          marginBottom={35}
+          marginBottom={40}
           padding={20}
           validate={[required()]}
         />
@@ -74,7 +74,7 @@ const EditProfile = ({ handleSubmit, submitting }) => {
           name="telegram"
           placeHolder="USUÁRIO DO TELEGRAM"
           type="text"
-          marginBottom={35}
+          marginBottom={40}
           padding={20}
           validate={[required()]}
         />
@@ -82,17 +82,9 @@ const EditProfile = ({ handleSubmit, submitting }) => {
           name="email"
           placeHolder="E-MAIL"
           type="text"
-          marginBottom={35}
+          marginBottom={40}
           padding={20}
           validate={[required(), emailType({ msg: ' Email inválido' })]}
-        />
-        <Input
-          name="camp"
-          placeHolder="NOME DA PLANTAÇÃO"
-          type="text"
-          marginBottom={35}
-          padding={20}
-          validate={[required()]}
         />
         <ButtonsContainer>
           <Button
@@ -127,14 +119,3 @@ const EditProfile = ({ handleSubmit, submitting }) => {
 export default reduxForm({
   form: 'editProfile',
 })(EditProfile);
-
-// export default connect((state) => ({
-//   initialValues: {
-//     name: state.user.name,
-//     email: state.user.email,
-//     cpf: state.user.cpf,
-//     telegram: state.user.telegram,
-//     camp: state.user.camp,
-//   },
-//   enableReinitialize: true,
-// }))(EditProfile);

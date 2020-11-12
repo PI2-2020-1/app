@@ -1,7 +1,14 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
-  profile: null,
+  profile: {
+    full_name: '',
+    email: '',
+    telegram: '',
+    cpf: '',
+    username: '',
+    is_responsible: false,
+  },
   loading: false,
 };
 
@@ -26,15 +33,7 @@ export default function user(state = INITIAL_STATE, action) {
         break;
       }
       case '@auth/UPDATE_USER_SUCCESS': {
-        // draft.profile = action.payload.user;
-        draft.profile = {
-          full_name: 'Testando Teste',
-          cpf: '09876543213',
-          username: 'test',
-          email: 'tes@gmail.com',
-          camp: 'Fazenda Feliz',
-          telegram: 'test_tel',
-        };
+        draft.profile = action.payload.user;
         draft.loading = false;
         break;
       }

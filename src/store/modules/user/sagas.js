@@ -8,9 +8,13 @@ export function* updateUser({ payload }) {
   try {
     const { user } = payload;
 
-    // const response = yield call(api.put, `api/user/update`, user);
-    const response = { data: {} };
-    yield put(updateUserSuccess(response.data));
+    const response = yield call(api.post, `api/profile/${user.username}`, {
+      telegram: user.telegram,
+      email: user.email,
+      full_name: user.name,
+    });
+    const { plantations, ...userReponse } = response.data;
+    yield put(updateUserSuccess(userReponse));
 
     history.goBack();
     toast.success('Sucesso ao atualizar perfil');
