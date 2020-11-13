@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { CSVLink } from 'react-csv';
 import { toast } from 'react-toastify';
 import { format } from 'date-fns';
+import { useSelector } from 'react-redux';
 import { CommonInput, Button } from '../../components';
 import { getReportData } from '../../services/ReportService';
 
@@ -16,6 +17,8 @@ import {
 } from './index.style';
 
 const Reports = () => {
+  const stations = useSelector((state) => state.station.allStationData);
+
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [station, setStation] = useState('0');
@@ -27,6 +30,10 @@ const Reports = () => {
     soilHumidity: false,
     humidity: false,
     wind: false,
+  });
+
+  useEffect(() => {
+    console.log(stations, '==============ESTAÇÕES==============');
   });
 
   const csvLinkRef = useRef();
@@ -236,11 +243,9 @@ const Reports = () => {
             <option value="0" defaultChecked>
               Todas
             </option>
-            <option value="1">Estação 1</option>
-            <option value="2">Estação 2</option>
-            <option value="3">Estação 3</option>
-            <option value="4">Estação 4</option>
-            <option value="5">Estação 5</option>
+            {stations.map((stationItem) => (
+              <option value={stationItem.id}>{stationItem.name}</option>
+            ))}
           </CommonInput>
         </Form.Group>
         <Button
