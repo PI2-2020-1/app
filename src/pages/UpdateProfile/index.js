@@ -18,7 +18,7 @@ import {
 
 // eslint-disable-next-line react/prop-types
 const EditProfile = ({ handleSubmit, submitting }) => {
-  const user = useSelector((state) => state.user.profile);
+  const { user } = useSelector((state) => state.station);
   const dispatch = useDispatch();
 
   useEffect(() => {

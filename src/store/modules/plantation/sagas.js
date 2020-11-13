@@ -32,8 +32,8 @@ export function* addEmployee({ payload }) {
     toast.success('Usuário cadastrado com sucesso');
     yield put(updateEmployees(username));
   } catch (err) {
-    yield* put(requestFinish());
-    toast.error('Ocorreu um erro ao adicionar funcionário');
+    yield put(requestFinish());
+    toast.error('Já existe um funcionário com esse CPF');
     console.log(err);
   }
 }
