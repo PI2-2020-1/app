@@ -14,42 +14,51 @@ function Item({ item }) {
   const [description, setDescription] = useState();
   const [unity, setUnity] = useState();
   const [value, setValue] = useState();
+
+  // WIND = 0
+  // PRESSURE = 1
+  // AIR_TEMPERATURE = 2
+  // PH = 3
+  // SOIL_UMIDITY = 4
+  // AIR_UMIDITY = 5
+  // RAIN = 6
+  console.log('item', item)
   useEffect(() => {
-    if (item.temperature) {
+    if (item.parameter === 2) {
       setIcon(sun);
       setDescription('Temperatura');
       setUnity('ºC');
-      setValue(item.temperature);
-    } else if (item.airHumidity) {
+      setValue(item.value);
+    } else if (item.parameter === 5) {
       setIcon(airHumidity);
       setDescription('Umidade do Ar');
       setUnity('g/Kg');
-      setValue(item.airHumidity);
-    } else if (item.atmosphericPressure) {
+      setValue(item.value);
+    } else if (item.parameter === 1) {
       setIcon(pressure);
       setDescription('Pressão Atmosférica');
       setUnity('Hg');
-      setValue(item.atmosphericPressure);
-    } else if (item.windSpeed) {
+      setValue(item.value);
+    } else if (item.parameter === 0) {
       setIcon(air);
       setDescription('Velocidade do Vento');
       setUnity('km/h');
-      setValue(item.windSpeed);
-    } else if (item.pluviometricIndex) {
+      setValue(item.value);
+    } else if (item.parameter === 6) {
       setIcon(pluviometricIndex);
       setDescription('Índice Pluviométrico');
       setUnity('mm');
-      setValue(item.pluviometricIndex);
-    } else if (item.pH) {
+      setValue(item.value);
+    } else if (item.parameter === 3) {
       setIcon(pH);
       setDescription('Acidez do Solo');
       setUnity('pH');
-      setValue(item.pH);
-    } else if (item.soilMoistude) {
+      setValue(item.value);
+    } else if (item.parameter === 4) {
       setIcon(soilMoisture);
       setDescription('Umidade do Solo');
       setUnity('kPa');
-      setValue(item.soilMoistude);
+      setValue(item.value);
     } else {
       setIcon(pressure);
       setDescription('Not Found');
