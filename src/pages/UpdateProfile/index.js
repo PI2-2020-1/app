@@ -1,18 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Form } from 'react-bootstrap';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { reduxForm, change, initialize } from 'redux-form';
+import { reduxForm, change } from 'redux-form';
 import { required, email as emailType } from 'redux-form-validators';
 import { Input, Button } from '../../components';
 import Colors from '../../styles/colors';
 import history from '../../services/history';
-import { updateUser } from '../../store/modules/user/actions';
+import { updateUser } from '../../store/modules/station/actions';
 
 import {
   ContainerBootstrap,
   Title,
   Content,
-  Label,
   ButtonsContainer,
 } from './index.style';
 
@@ -31,11 +29,8 @@ const EditProfile = ({ handleSubmit, submitting }) => {
   }, [dispatch, user.cpf]);
 
   const onSubmit = (props) => {
-    console.log(props);
     // eslint-disable-next-line react/prop-types
     const { username, name, telegram, email } = props;
-
-    console.log('ATUALIZANDO USUÁRIO!');
     dispatch(updateUser({ username, name, telegram, email }));
   };
 

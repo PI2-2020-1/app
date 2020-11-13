@@ -18,7 +18,7 @@ export function getStationDataFailure() {
 }
 
 export function getStationLastedDataRequest(selectedStation) {
-  console.log('actionSelectedStation', selectedStation)
+  console.log('actionSelectedStation', selectedStation);
   return {
     type: '@station/GET_STATION_LASTED_DATA_REQUEST',
     payload: { selectedStation },
@@ -38,3 +38,22 @@ export function getStationLastedDataFailure() {
   };
 }
 
+export function updateUser(user) {
+  return {
+    type: '@station/UPDATE_USER',
+    payload: { user },
+  };
+}
+
+export function updateUserSuccess(user) {
+  return {
+    type: '@station/UPDATE_USER_SUCCESS',
+    payload: { user },
+  };
+}
+
+export function updateUserError() {
+  return {
+    type: '@station/UPDATE_USER_ERROR',
+  };
+}
