@@ -13,6 +13,8 @@ const INITIAL_STATE = {
   pH: [],
   soilMoistude: [],
   user: [],
+  farm: '',
+  name: '',
 };
 
 export default function station(state = INITIAL_STATE, action) {
@@ -26,6 +28,8 @@ export default function station(state = INITIAL_STATE, action) {
         const { stationData } = action.payload;
         console.log(stationData.users[0]);
         draft.user = stationData.users[0];
+        draft.farm = stationData.farm;
+        draft.name = stationData.name;
         // console.log('Stations', stationData.users[0].plantations[0].stations)
         draft.stationLength =
           stationData.users[0].plantations[0].stations.length;

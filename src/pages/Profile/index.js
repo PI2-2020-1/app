@@ -19,7 +19,7 @@ import Parameters from './Parameters';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.station);
+  const { user, farm } = useSelector((state) => state.station);
   const loading = useSelector((state) => state.user.loading);
   const employees = useSelector((state) => state.plantation.employees);
   const [modalShow, setModalShow] = useState(false);
@@ -63,7 +63,7 @@ const Profile = () => {
           </Col>
           <Col>
             <Text color={Colors.grey_4}>{user.email}</Text>
-            <Text color={Colors.grey_4}>{user.camp || '-'}</Text>
+            <Text color={Colors.grey_4}>{farm || '-'}</Text>
             <Text color={Colors.grey_4}>{user.telegram || '-'}</Text>
           </Col>
         </ContainerRow>
