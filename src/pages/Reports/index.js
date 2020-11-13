@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { CSVLink } from 'react-csv';
 import { toast } from 'react-toastify';
@@ -17,11 +17,11 @@ import {
 } from './index.style';
 
 const Reports = () => {
-  const stations = useSelector((state) => state.station.allStationData);
+  const stations = useSelector((state) => state.station.stationLength);
 
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [station, setStation] = useState('0');
+  const [station, setStation] = useState([0]);
   const [reportData, setReportData] = useState([]);
   const [parameters, setParameters] = useState({
     pressure: false,
@@ -30,10 +30,6 @@ const Reports = () => {
     soilHumidity: false,
     humidity: false,
     wind: false,
-  });
-
-  useEffect(() => {
-    console.log(stations, '==============ESTAÇÕES==============');
   });
 
   const csvLinkRef = useRef();
@@ -83,9 +79,14 @@ const Reports = () => {
     );
 
     try {
-      const response = await getReportData(startDate, endDate, parametersList, [
-        station,
-      ]);
+      const response = await getReportData(
+        startDate,
+        endDate,
+        parametersList,
+        station[0] === 0
+          ? [...Array(stations).keys()].map((i) => i + 1)
+          : station
+      );
       buildCsv(response);
       csvLinkRef.current.link.click();
     } catch {
@@ -235,7 +236,7 @@ const Reports = () => {
             as="select"
             type="select"
             padding={15}
-            onChange={(event) => setStation(+event.target.value)}
+            onChange={(event) => setStation([+event.target.value])}
             width="100%"
             marginTop={10}
             name="station"
@@ -243,8 +244,8 @@ const Reports = () => {
             <option value="0" defaultChecked>
               Todas
             </option>
-            {stations.map((stationItem) => (
-              <option value={stationItem.id}>{stationItem.name}</option>
+            {[...Array(stations).keys()].map((i) => (
+              <option value={i + 1}>{`Estação ${i + 1}`}</option>
             ))}
           </CommonInput>
         </Form.Group>
