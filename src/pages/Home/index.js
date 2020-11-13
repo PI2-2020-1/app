@@ -3,21 +3,36 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaSpinner } from 'react-icons/fa';
 import Item from './Item';
 import Graphic from './Graphic';
-import { getStationDataRequest } from '../../store/modules/station/actions';
-import { Container, Header, ItemsGrid, Title } from './styles';
+import { getStationDataRequest, getStationLastedDataRequest } from '../../store/modules/station/actions';
+import { Container, ContainerSelect, Select, Header, ItemsGrid, Title } from './styles';
 import Colors from '../../styles/colors';
 
 const Home = () => {
   const disptach = useDispatch();
-  const { lastData, allStationData, loading } = useSelector(
+  const [selectedData, setSelectedData] = useState(1);
+
+  const { lastData, allStationData, loading, stationLength } = useSelector(
     (state) => state.station
   );
 
   useEffect(() => {
     disptach(getStationDataRequest());
-  }, []);
+  }, [getStationDataRequest]);
 
-  console.log('All', allStationData);
+  useEffect(() => {
+    disptach(getStationLastedDataRequest(selectedData));
+  }, [selectedData]);
+
+
+  const handleSelect = (event) => {
+    setSelectedData(event.target.value);
+  };
+
+  let options = []
+  for (let i = 0; i < stationLength; i++) {
+    options.push(<option value={i + 1}>Estação {i + 1}</option>)
+  }
+  // console.log('All', allStationData);
 
   return (
     <Container>
@@ -31,13 +46,24 @@ const Home = () => {
           style={{ marginLeft: 50 }}
         />
       ) : (
-        <>
-          <ItemsGrid>
-            {lastData && lastData.map((item) => <Item item={item} />)}
-          </ItemsGrid>
-          <Graphic />
-        </>
-      )}
+          <>
+            <ContainerSelect>
+              <Select
+                name="selectedData"
+                id="selectedData"
+                value={selectedData}
+                onChange={handleSelect}
+              >
+                {options}
+              </Select>
+            </ContainerSelect>
+            {/* <SelectStation stationLength={stationLength} /> */}
+            <ItemsGrid>
+              {lastData && lastData.map((item) => <Item item={item} />)}
+            </ItemsGrid>
+            <Graphic />
+          </>
+        )}
     </Container>
   );
 };

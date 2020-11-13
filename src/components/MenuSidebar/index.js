@@ -19,7 +19,8 @@ import {
 
 function MenuSidebar() {
   const { username } = useSelector((state) => state.user.profile);
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.station)
 
   return (
     <Container>
@@ -31,8 +32,8 @@ function MenuSidebar() {
       <ContainerInfo>
         <FarmOf>Fazenda de</FarmOf>
         <FarmOwner>
-          {user.first_name && user.first_name
-            ? `${user.first_name} ${user.last_name}`
+          {user.full_name
+            ? user.full_name.split(' ', 1)
             : username}
         </FarmOwner>
       </ContainerInfo>
