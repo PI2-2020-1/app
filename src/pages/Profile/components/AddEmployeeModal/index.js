@@ -17,7 +17,7 @@ import Colors from '../../../../styles/colors';
 const AddEmployeeModal = ({ show, handleSubmit, onHide }) => {
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.user.profile);
+  const { user } = useSelector((state) => state.station);
 
   const onAddClick = ({ cpf }) => {
     dispatch(addEmployeeRequest(cpf, user.username));

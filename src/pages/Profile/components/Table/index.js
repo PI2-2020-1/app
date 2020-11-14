@@ -16,7 +16,7 @@ import { deleteEmployee } from '../../../../store/modules/plantation/actions';
 
 const BasicTable = ({ users }) => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.profile);
+  const { user } = useSelector((state) => state.station);
 
   const StyledTableRow = withStyles(() => ({
     head: {

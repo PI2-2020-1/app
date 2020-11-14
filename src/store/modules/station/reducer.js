@@ -13,6 +13,8 @@ const INITIAL_STATE = {
   pH: [],
   soilMoistude: [],
   user: [],
+  farm: '',
+  name: '',
 };
 
 export default function station(state = INITIAL_STATE, action) {
@@ -26,8 +28,11 @@ export default function station(state = INITIAL_STATE, action) {
         const { stationData } = action.payload;
         console.log(stationData.users[0]);
         draft.user = stationData.users[0];
+        draft.farm = stationData.farm;
+        draft.name = stationData.name;
         // console.log('Stations', stationData.users[0].plantations[0].stations)
-        draft.stationLength = stationData.users[0].plantations[0].stations.length;
+        draft.stationLength =
+          stationData.users[0].plantations[0].stations.length;
         console.log('Length', draft.stationLength);
         // // Get environment and Soil of the last update item and tranform in array of object
         // let lastEnv = stationData[stationData.length - 1].environment;
@@ -70,8 +75,9 @@ export default function station(state = INITIAL_STATE, action) {
         // draft.soilMoistude = soilMoistude;
 
         // draft.loading = false;
-        // break;
+        break;
       }
+
       case '@station/GET_STATION_DATA_FAILURE': {
         draft.loading = false;
         break;
@@ -92,6 +98,20 @@ export default function station(state = INITIAL_STATE, action) {
       }
 
       case '@station/GET_STATION_LASTED_DATA_FAILURE': {
+        draft.loading = false;
+        break;
+      }
+
+      case '@station/UPDATE_USER': {
+        draft.loading = true;
+        break;
+      }
+      case '@station/UPDATE_USER_ERROR': {
+        draft.loading = false;
+        break;
+      }
+      case '@station/UPDATE_USER_SUCCESS': {
+        draft.user = action.payload.user;
         draft.loading = false;
         break;
       }

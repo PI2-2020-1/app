@@ -18,8 +18,7 @@ import { getEmployees } from '../../store/modules/plantation/actions';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  // const user = useSelector((state) => state.user.profile);
-  const { user } = useSelector((state) => state.station);
+  const { user, farm } = useSelector((state) => state.station);
   const loading = useSelector((state) => state.user.loading);
   const employees = useSelector((state) => state.plantation.employees);
   const [modalShow, setModalShow] = useState(false);
@@ -63,7 +62,7 @@ const Profile = () => {
           </Col>
           <Col>
             <Text color={Colors.grey_4}>{user.email}</Text>
-            <Text color={Colors.grey_4}>{user.camp || '-'}</Text>
+            <Text color={Colors.grey_4}>{farm || '-'}</Text>
             <Text color={Colors.grey_4}>{user.telegram || '-'}</Text>
           </Col>
         </ContainerRow>
@@ -72,26 +71,26 @@ const Profile = () => {
       {loading ? (
         <Spinner animation="border" variant="success" />
       ) : (
-          user.is_responsible && (
-            <>
-              <ContainerTitle>
-                <Text size={25}>Funcionários</Text>
-                <Button
-                  onClick={() => setModalShow(true)}
-                  paddingHorizontal={20}
-                  paddingTop={10}
-                  paddingBottom={10}
-                  rounded
-                >
-                  Adicionar
+        user.is_responsible && (
+          <>
+            <ContainerTitle>
+              <Text size={25}>Funcionários</Text>
+              <Button
+                onClick={() => setModalShow(true)}
+                paddingHorizontal={20}
+                paddingTop={10}
+                paddingBottom={10}
+                rounded
+              >
+                Adicionar
               </Button>
-              </ContainerTitle>
-              <EmployeeSection>
-                <Table users={employees} />
-              </EmployeeSection>
-            </>
-          )
-        )}
+            </ContainerTitle>
+            <EmployeeSection>
+              <Table users={employees} />
+            </EmployeeSection>
+          </>
+        )
+      )}
 
       <AddEmployeeModal show={modalShow} onHide={() => setModalShow(false)} />
     </Container>

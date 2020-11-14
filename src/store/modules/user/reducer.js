@@ -24,19 +24,7 @@ export default function user(state = INITIAL_STATE, action) {
         draft.profile = null;
         break;
       }
-      case '@auth/UPDATE_USER': {
-        draft.loading = true;
-        break;
-      }
-      case '@auth/UPDATE_USER_ERROR': {
-        draft.loading = false;
-        break;
-      }
-      case '@auth/UPDATE_USER_SUCCESS': {
-        draft.profile = action.payload.user;
-        draft.loading = false;
-        break;
-      }
+
       default:
         return state;
     }
