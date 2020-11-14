@@ -15,12 +15,11 @@ import Table from './components/Table';
 import AddEmployeeModal from './components/AddEmployeeModal';
 import { Button } from '../../components';
 import { getEmployees } from '../../store/modules/plantation/actions';
-import Parameters from './Parameters';
 
 const Profile = () => {
   const dispatch = useDispatch();
   // const user = useSelector((state) => state.user.profile);
-  const { user } = useSelector((state) => state.station)
+  const { user } = useSelector((state) => state.station);
   const loading = useSelector((state) => state.user.loading);
   const employees = useSelector((state) => state.plantation.employees);
   const [modalShow, setModalShow] = useState(false);
@@ -69,8 +68,6 @@ const Profile = () => {
           </Col>
         </ContainerRow>
       </ProfileSection>
-
-      <Parameters />
 
       {loading ? (
         <Spinner animation="border" variant="success" />

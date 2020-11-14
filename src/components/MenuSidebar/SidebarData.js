@@ -28,7 +28,7 @@ export const SidebarData = [
   {
     id: 4,
     title: 'Notificações',
-    path: '/home',
+    path: '/notification',
     icon: <MaterialIcons.MdNotificationsNone size={35} />,
     cName: 'nav-text',
   },
