@@ -15,25 +15,106 @@ const INITIAL_STATE = {
   user: [],
   farm: '',
   name: '',
+  selectedStation: 1,
 };
 
 export default function station(state = INITIAL_STATE, action) {
   return produce(state, (draft) => {
     switch (action.type) {
       case '@station/GET_STATION_DATA_REQUEST': {
+        const { selectedData } = action.payload;
+        console.log('Select!!!!!!!', selectedData);
         draft.loading = true;
+        draft.selectedStation = selectedData;
         break;
       }
       case '@station/GET_STATION_DATA_SUCCESS': {
         const { stationData } = action.payload;
-        console.log(stationData.users[0]);
+        console.log('PAYLOAD', action.payload);
+        // console.log('stationData!', stationData.users[0]);
         draft.user = stationData.users[0];
         draft.farm = stationData.farm;
         draft.name = stationData.name;
         // console.log('Stations', stationData.users[0].plantations[0].stations)
         draft.stationLength =
           stationData.users[0].plantations[0].stations.length;
-        console.log('Length', draft.stationLength);
+
+        console.log('será ???', draft.selectedStation);
+        const { readings } = stationData.users[0].plantations[0].stations[
+          draft.selectedStation - 1
+        ];
+        // WIND = 0
+        const windSpeed = readings.filter((item) => {
+          return item.parameters[0].parameter_type === 0;
+        });
+
+        const windFormatted = windSpeed.map((item, index) => {
+          return { x: index, y: item.value };
+        });
+        draft.windSpeed = windFormatted;
+
+        // PRESSURE = 1
+        const atmosphericPressure = readings.filter((item) => {
+          return item.parameters[0].parameter_type === 1;
+        });
+
+        const atmosphericPressureFormatted = atmosphericPressure.map(
+          (item, index) => {
+            return { x: index, y: item.value };
+          }
+        );
+        draft.atmosphericPressure = atmosphericPressureFormatted;
+
+        // AIR_TEMPERATURE = 2
+        const airTemperature = readings.filter((item) => {
+          return item.parameters[0].parameter_type === 2;
+        });
+
+        const airTemperatureFormatted = airTemperature.map((item, index) => {
+          return { x: index, y: item.value };
+        });
+        draft.temperatures = airTemperatureFormatted;
+
+        // PH = 3
+        const ph = readings.filter((item) => {
+          return item.parameters[0].parameter_type === 3;
+        });
+
+        const phFormatted = ph.map((item, index) => {
+          return { x: index, y: item.value };
+        });
+        draft.pH = phFormatted;
+
+        // SOIL_UMIDITY = 4
+        const soilUmidity = readings.filter((item) => {
+          return item.parameters[0].parameter_type === 4;
+        });
+
+        const soildUmidityFormatted = soilUmidity.map((item, index) => {
+          return { x: index, y: item.value };
+        });
+        draft.soilMoistude = soildUmidityFormatted;
+
+        // AIR_UMIDITY = 5
+        const airHumidity = readings.filter((item) => {
+          return item.parameters[0].parameter_type === 5;
+        });
+
+        const airHumidityFormatted = airHumidity.map((item, index) => {
+          return { x: index, y: item.value };
+        });
+        draft.airHumidity = airHumidityFormatted;
+
+        // RAIN = 6
+        const rain = readings.filter((item) => {
+          return item.parameters[0].parameter_type === 6;
+        });
+
+        const rainFormatted = rain.map((item, index) => {
+          return { x: index, y: item.value };
+        });
+        draft.pluviometricIndex = rainFormatted;
+
         // // Get environment and Soil of the last update item and tranform in array of object
         // let lastEnv = stationData[stationData.length - 1].environment;
         // lastEnv = Object.entries(lastEnv).map((e) => ({ [e[0]]: e[1] }));
