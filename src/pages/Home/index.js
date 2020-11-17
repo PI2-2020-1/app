@@ -3,8 +3,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaSpinner } from 'react-icons/fa';
 import Item from './Item';
 import Graphic from './Graphic';
-import { getStationDataRequest, getStationLastedDataRequest } from '../../store/modules/station/actions';
-import { Container, ContainerSelect, Select, Header, ItemsGrid, Title } from './styles';
+import {
+  getStationDataRequest,
+  getStationLastedDataRequest,
+} from '../../store/modules/station/actions';
+import {
+  Container,
+  ContainerSelect,
+  Select,
+  Header,
+  ItemsGrid,
+  Title,
+} from './styles';
 import Colors from '../../styles/colors';
 
 const Home = () => {
@@ -15,22 +25,22 @@ const Home = () => {
     (state) => state.station
   );
 
-  useEffect(() => {
-    disptach(getStationDataRequest());
-  }, [getStationDataRequest]);
+  // useEffect(() => {
+  //   disptach(getStationDataRequest(selectedData));
+  // }, [getStationDataRequest]);
 
   useEffect(() => {
     disptach(getStationLastedDataRequest(selectedData));
+    disptach(getStationDataRequest(selectedData));
   }, [selectedData]);
-
 
   const handleSelect = (event) => {
     setSelectedData(event.target.value);
   };
 
-  let options = []
+  const options = [];
   for (let i = 0; i < stationLength; i++) {
-    options.push(<option value={i + 1}>Estação {i + 1}</option>)
+    options.push(<option value={i + 1}>Estação {i + 1}</option>);
   }
   // console.log('All', allStationData);
 

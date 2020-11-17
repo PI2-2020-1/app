@@ -1,6 +1,7 @@
-export function getStationDataRequest() {
+export function getStationDataRequest(selectedData) {
   return {
     type: '@station/GET_STATION_DATA_REQUEST',
+    payload: { selectedData },
   };
 }
 
