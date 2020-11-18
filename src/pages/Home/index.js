@@ -7,6 +7,7 @@ import {
   getStationDataRequest,
   getStationLastedDataRequest,
 } from '../../store/modules/station/actions';
+import { getParametersDataRequest } from '../../store/modules/parameter/actions';
 import {
   Container,
   ContainerSelect,
@@ -24,14 +25,63 @@ const Home = () => {
   const { lastData, allStationData, loading, stationLength } = useSelector(
     (state) => state.station
   );
+  const { parameters } = useSelector((state) => state.parameter);
 
-  // useEffect(() => {
-  //   disptach(getStationDataRequest(selectedData));
-  // }, [getStationDataRequest]);
+  useEffect(() => {
+    if (
+      lastData[0].value < parameters[0].min_value ||
+      lastData[0].value > parameters[0].max_value
+    ) {
+      console.log(' // WIND = 0 ERROR');
+    }
+    if (
+      lastData[1].value < parameters[1].min_value ||
+      lastData[1].value > parameters[1].max_value
+    ) {
+      console.log(' // PRESSURE = 1 ERROR');
+    }
+    if (
+      lastData[2].value < parameters[2].min_value ||
+      lastData[2].value > parameters[2].max_value
+    ) {
+      console.log(' // AIR_TEMPERATURE = 2 ERROR');
+    }
+    if (
+      lastData[3].value < parameters[3].min_value ||
+      lastData[3].value > parameters[3].max_value
+    ) {
+      console.log(' // PH = 3 ERROR');
+    }
+    if (
+      lastData[4].value < parameters[4].min_value ||
+      lastData[4].value > parameters[4].max_value
+    ) {
+      console.log(' // SOIL_UMIDITY = 4 ERROR');
+    }
+    if (
+      lastData[5].value < parameters[5].min_value ||
+      lastData[5].value > parameters[5].max_value
+    ) {
+      console.log(' // AIR_UMIDITY = 5 ERROR');
+    }
+    if (
+      lastData[6].value < parameters[6].min_value ||
+      lastData[6].value > parameters[6].max_value
+    ) {
+      console.log(' // RAIN = 6 ERROR');
+    }
+
+    console.log('value', lastData[2].value);
+    console.log('min', parameters[2].min_value);
+    console.log('max', parameters[2].max_value);
+
+    // const errors = lastData.map((item) => {});
+  }, [lastData, parameters]);
 
   useEffect(() => {
     disptach(getStationLastedDataRequest(selectedData));
     disptach(getStationDataRequest(selectedData));
+    disptach(getParametersDataRequest());
   }, [selectedData]);
 
   const handleSelect = (event) => {
@@ -56,24 +106,24 @@ const Home = () => {
           style={{ marginLeft: 50 }}
         />
       ) : (
-          <>
-            <ContainerSelect>
-              <Select
-                name="selectedData"
-                id="selectedData"
-                value={selectedData}
-                onChange={handleSelect}
-              >
-                {options}
-              </Select>
-            </ContainerSelect>
-            {/* <SelectStation stationLength={stationLength} /> */}
-            <ItemsGrid>
-              {lastData && lastData.map((item) => <Item item={item} />)}
-            </ItemsGrid>
-            <Graphic />
-          </>
-        )}
+        <>
+          <ContainerSelect>
+            <Select
+              name="selectedData"
+              id="selectedData"
+              value={selectedData}
+              onChange={handleSelect}
+            >
+              {options}
+            </Select>
+          </ContainerSelect>
+          {/* <SelectStation stationLength={stationLength} /> */}
+          <ItemsGrid>
+            {lastData && lastData.map((item) => <Item item={item} />)}
+          </ItemsGrid>
+          <Graphic />
+        </>
+      )}
     </Container>
   );
 };

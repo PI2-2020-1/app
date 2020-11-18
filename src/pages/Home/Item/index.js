@@ -22,7 +22,6 @@ function Item({ item }) {
   // SOIL_UMIDITY = 4
   // AIR_UMIDITY = 5
   // RAIN = 6
-  console.log('item', item)
   useEffect(() => {
     if (item.parameter === 2) {
       setIcon(sun);
