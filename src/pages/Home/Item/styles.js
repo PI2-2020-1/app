@@ -8,6 +8,10 @@ const Container = styled.div`
   /* flex: 1; */
   padding: 20px;
   margin: 10px;
+  /* border: 1px solid red; */
+  /* border: ${(props) =>
+    props.border === true ? '1px solid red' : '0px solid red'}; */
+  /* background: ${(props) => (props.primary ? 'palevioletred' : 'white')}; */
 `;
 
 const Image = styled.img`

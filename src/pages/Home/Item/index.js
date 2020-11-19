@@ -9,12 +9,14 @@ import pH from '../../../assets/pH.svg';
 import soilMoisture from '../../../assets/soilMoisture.svg';
 import pluviometricIndex from '../../../assets/pluviometricIndex.svg';
 
-function Item({ item }) {
+function Item({ item, itemsOutsideParameters }) {
   const [icon, setIcon] = useState();
   const [description, setDescription] = useState();
   const [unity, setUnity] = useState();
   const [value, setValue] = useState();
+  const [border, setBorder] = useState(false);
 
+  console.log('outsideItemsInside', itemsOutsideParameters);
   // WIND = 0
   // PRESSURE = 1
   // AIR_TEMPERATURE = 2
@@ -28,6 +30,9 @@ function Item({ item }) {
       setDescription('Temperatura');
       setUnity('ºC');
       setValue(item.value);
+      // itemsOutsideParameters.includes('air_temperature')
+      //   ? setBorder(true)
+      //   : setBorder('');
     } else if (item.parameter === 5) {
       setIcon(airHumidity);
       setDescription('Umidade do Ar');
@@ -66,7 +71,13 @@ function Item({ item }) {
   }, [item]);
 
   return (
-    <Container>
+    <Container
+      /* border={border} */ style={
+        itemsOutsideParameters.includes(item.parameter)
+          ? { border: '0.5px solid #ef7070' }
+          : {}
+      }
+    >
       <Image src={icon} />
       <ContainerInfo>
         <Data>
