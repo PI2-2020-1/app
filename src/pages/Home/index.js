@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaSpinner } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import Item from './Item';
 import Graphic from './Graphic';
 import {
@@ -21,6 +22,7 @@ import Colors from '../../styles/colors';
 const Home = () => {
   const disptach = useDispatch();
   const [selectedData, setSelectedData] = useState(1);
+  const [itemsOutsideParameters, setItemsOutsideParameters] = useState([]);
 
   const { lastData, allStationData, loading, stationLength } = useSelector(
     (state) => state.station
@@ -28,55 +30,52 @@ const Home = () => {
   const { parameters } = useSelector((state) => state.parameter);
 
   useEffect(() => {
+    const outsideParameters = [];
     if (
       lastData[0].value < parameters[0].min_value ||
       lastData[0].value > parameters[0].max_value
     ) {
-      console.log(' // WIND = 0 ERROR');
+      outsideParameters.push(0);
     }
     if (
       lastData[1].value < parameters[1].min_value ||
       lastData[1].value > parameters[1].max_value
     ) {
-      console.log(' // PRESSURE = 1 ERROR');
+      outsideParameters.push(1);
     }
     if (
       lastData[2].value < parameters[2].min_value ||
       lastData[2].value > parameters[2].max_value
     ) {
-      console.log(' // AIR_TEMPERATURE = 2 ERROR');
+      outsideParameters.push(2);
     }
     if (
       lastData[3].value < parameters[3].min_value ||
       lastData[3].value > parameters[3].max_value
     ) {
-      console.log(' // PH = 3 ERROR');
+      outsideParameters.push(3);
     }
     if (
       lastData[4].value < parameters[4].min_value ||
       lastData[4].value > parameters[4].max_value
     ) {
-      console.log(' // SOIL_UMIDITY = 4 ERROR');
+      outsideParameters.push(4);
     }
     if (
       lastData[5].value < parameters[5].min_value ||
       lastData[5].value > parameters[5].max_value
     ) {
-      console.log(' // AIR_UMIDITY = 5 ERROR');
+      outsideParameters.push(5);
     }
     if (
       lastData[6].value < parameters[6].min_value ||
       lastData[6].value > parameters[6].max_value
     ) {
-      console.log(' // RAIN = 6 ERROR');
+      outsideParameters.push(6);
     }
 
-    console.log('value', lastData[2].value);
-    console.log('min', parameters[2].min_value);
-    console.log('max', parameters[2].max_value);
-
-    // const errors = lastData.map((item) => {});
-  }, [lastData, parameters]);
+    setItemsOutsideParameters(outsideParameters);
+  }, [lastData]);
 
   useEffect(() => {
     disptach(getStationLastedDataRequest(selectedData));
@@ -119,7 +118,14 @@ const Home = () => {
           </ContainerSelect>
           {/* <SelectStation stationLength={stationLength} /> */}
           <ItemsGrid>
-            {lastData && lastData.map((item) => <Item item={item} />)}
+            {lastData &&
+              itemsOutsideParameters &&
+              lastData.map((item) => (
+                <Item
+                  item={item}
+                  itemsOutsideParameters={itemsOutsideParameters}
+                />
+              ))}
           </ItemsGrid>
           <Graphic />
         </>
