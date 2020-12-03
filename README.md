@@ -6,9 +6,12 @@
   Analisador de ambiente para Plantações
 </h4>
 
-## :clapper: Vídeo demonstrando o fluxo da aplicação WEB
+## :clapper: Vídeo demonstrativo
 
+<div align="center">
 [![Video demonstrando o fluxo da aplicação](http://img.youtube.com/vi/qSPIYovnxYQ/0.jpg)](http://www.youtube.com/watch?v=qSPIYovnxYQ "A2P2 Web")
+</div>
+
 ## :rocket: Technologias
 
 O A2P2 Web foi desenvolvido com as seguintes tecnologias:
@@ -48,3 +51,6 @@ $ yarn start
 ```
 [nodejs]: https://nodejs.org/
 [yarn]: https://yarnpkg.com/
+[vc]: https://code.visualstudio.com/
+[vceditconfig]: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
+[vceslint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
