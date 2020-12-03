@@ -3,16 +3,14 @@
 </h1>
 
 <h4 align="center">
-  Analisador de ambiente para Plantações
+  A2P2 (Analisador de Ambiente para Plantações) Por meio da visualização facilitada e compreensível de dados estratégicos provenientes do campo, nossas soluções de software tem o objetivo de que, a partir dos dados enviados pelos sensores, os fazendeiros tomem decisões mais rápidas e eficazes para beneficio de seu campo . Portanto, a fim de atingir esses objetivos disponibilizamos um sistema para gerenciar suas propriedades, com uma Dashboard para visualização de gráficos e dados do campo e uma ferramenta que permite interação com o usuário através de um chatbot.
 </h4>
 
 ## :clapper: Vídeo demonstrativo
 
-<div align="center">
 [![Video demonstrando o fluxo da aplicação](http://img.youtube.com/vi/qSPIYovnxYQ/0.jpg)](http://www.youtube.com/watch?v=qSPIYovnxYQ "A2P2 Web")
-</div>
 
-## :rocket: Technologias
+## :rocket: Tecnologias
 
 O A2P2 Web foi desenvolvido com as seguintes tecnologias:
 
