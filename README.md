@@ -6,6 +6,9 @@
   Analisador de ambiente para Plantações
 </h4>
 
+## :clapper: Vídeo demonstrando o fluxo da aplicação WEB
+
+[![Video demonstrando o fluxo da aplicação](http://img.youtube.com/vi/qSPIYovnxYQ/0.jpg)](http://www.youtube.com/watch?v=qSPIYovnxYQ "A2P2 Web")
 ## :rocket: Technologias
 
 O A2P2 Web foi desenvolvido com as seguintes tecnologias:
