@@ -3,12 +3,16 @@
 </h1>
 
 <h4 align="center">
-  A2P2 (Analisador de Ambiente para Plantações) Por meio da visualização facilitada e compreensível de dados estratégicos provenientes do campo, nossas soluções de software tem o objetivo de que, a partir dos dados enviados pelos sensores, os fazendeiros tomem decisões mais rápidas e eficazes para beneficio de seu campo . Portanto, a fim de atingir esses objetivos disponibilizamos um sistema para gerenciar suas propriedades, com uma Dashboard para visualização de gráficos e dados do campo e uma ferramenta que permite interação com o usuário através de um chatbot.
+  A2P2 (Analisador de Ambiente para Plantações) 
 </h4>
+<h5 align="center">
+      Por meio da visualização facilitada e compreensível de dados estratégicos provenientes do campo, nossas soluções de software tem o objetivo de que, a partir dos dados enviados pelos sensores, os fazendeiros tomem decisões mais rápidas e eficazes para beneficio de seu campo . Portanto, a fim de atingir esses objetivos disponibilizamos um sistema para gerenciar suas propriedades, com uma Dashboard para visualização de gráficos e dados do campo e uma ferramenta que permite interação com o usuário através de um chatbot.
+</h5>
 
-## :clapper: Vídeo demonstrativo
+## :clapper: Vídeo Demonstrativo
 
-[![Video demonstrando o fluxo da aplicação](http://img.youtube.com/vi/qSPIYovnxYQ/0.jpg)](http://www.youtube.com/watch?v=qSPIYovnxYQ "A2P2 Web")
+  [![Video demonstrando o fluxo da aplicação](http://img.youtube.com/vi/qSPIYovnxYQ/0.jpg)](http://www.youtube.com/watch?v=qSPIYovnxYQ "A2P2 Web")
+
 
 ## :rocket: Tecnologias
 
@@ -39,7 +43,7 @@ Para clonar e utilizar está aplicação, você irá precisar [Git](https://git-
 $ git clone https://github.com/PI2-2020-1/app
 
 # Navegue até o repositório
-$ cd Frontend
+$ cd app
 
 # Instale as dependencias
 $ yarn install
